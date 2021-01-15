@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.techelevator</groupId>
-	<artifactId>04-Franks-Array-Example-Final</artifactId>
+	<artifactId>05-command-line-programs-exercise</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 	<dependencies>
@@ -30,8 +30,8 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 		</plugins>
