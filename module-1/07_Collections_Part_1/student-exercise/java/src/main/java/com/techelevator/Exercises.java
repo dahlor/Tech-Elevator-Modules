@@ -51,10 +51,21 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-	
 		
+		// Declare my array list for storage
+		List<String> allButFour = new ArrayList();
+		
+		// Check stringArray one at a time for length and push them into my list if they're okay
+		
+		// Initialize the loop
+		for(int i = 0; i < stringArray.length; i++) {
+		// Do the checking
+			if (stringArray[i].length() != 4) {
+				allButFour.add(stringArray[i]);
+			}
+		}
+		return allButFour;
 	}
-
 	/*
 	 Given an array of ints, divide each int by 2, and return an ArrayList of Doubles.
 	 arrayInt2ListDouble( {5, 8, 11, 200, 97} ) -> [2.5, 4.0, 5.5, 100, 48.5]
@@ -62,7 +73,21 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
-		return null;
+		
+		// Declare my list for storage
+		List<Double> numsDivided = new ArrayList();
+		
+		// Intitalize the loop
+		for(int i = 0; i < intArray.length; i++) {
+			
+		// Convert int and divide by two	
+			double doDivide = (intArray[i] / 2.0);
+	    
+		// Add to ArrayList
+			numsDivided.add(doDivide);
+		}
+		
+		return numsDivided;
 	}
 
 	/*
@@ -84,7 +109,19 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+	
+		// Declare my list
+		List<Integer> oddOnes = new ArrayList();
+		
+		// Get that old loop going
+		for(int i = 0; i < integerArray.length; i++) {
+			
+		// Check each integer for oddness
+			if (integerArray[i] % 2 == 1) {
+				oddOnes.add(integerArray[i]);
+			}
+		}
+		return oddOnes;
 	}
 
 	/*
@@ -95,6 +132,19 @@ public class Exercises {
 	 foundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
+		
+		int counter = 0;
+		
+		// Trying a fancy for-loop to search everything
+		for (Integer wheresWaldo : integerList) {
+		// Look for matching values & racking up the counter if found
+		if (wheresWaldo == intToFind) {
+			counter++;
+		}
+		
+		if (counter >= 2) {
+			return true;}
+		}
 		return false;
 	}
 
@@ -112,7 +162,30 @@ public class Exercises {
 	 equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		return null;
+		
+		// Declare my list
+		List<String> fizzyBuzzyList = new ArrayList();
+		
+		// Do my fancy loop magic & go through the whole list
+		for(Integer loopyLoo : integerArray) {
+			
+		if ((loopyLoo % 5 == 0) && (loopyLoo % 3 == 0)) {
+			fizzyBuzzyList.add("FizzBuzz");
+		}
+		if ((loopyLoo % 5 == 0) && (loopyLoo % 3 != 0)) {
+			fizzyBuzzyList.add("Buzz");
+		}
+		if ((loopyLoo % 5 != 0) && (loopyLoo % 3 == 0)) {
+			fizzyBuzzyList.add("Fizz");
+		}
+		if ((loopyLoo % 5 != 0) && (loopyLoo % 3 != 0)) {
+			fizzyBuzzyList.add(loopyLoo.toString());
+		}	
+			
+		}
+		
+		
+		return fizzyBuzzyList;
 	}
 
 	/*
@@ -123,7 +196,48 @@ public class Exercises {
 	 interleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
-		return null;
+		
+		// Define what needs to be returned
+		List<Integer> newList = new ArrayList();
+		
+		// Code for the "Edge Case" where lists are different lengths
+		//		Interleave for the length of the shorter list
+		//			We need to figure out which is shorter and it's length.
+		
+		boolean firstShorter = listOne.size() < listTwo.size();
+		int 	sizeOfShorter = 0;
+		
+		if (firstShorter) {
+			sizeOfShorter = listOne.size();
+		}
+		else {
+			sizeOfShorter = listTwo.size();
+		}
+		
+		// sizeOfShorter contains the number of elements in the short list.
+		
+		// Loop through all the elements in the array
+		// Add the current element in listOne to new list then add the current element in listTwo to the new list
+		for (int i = 0; i < sizeOfShorter; i++) { // Loop for the length of listOne
+			newList.add(listOne.get(i));		   // Add the current element in listOne to newList
+;			newList.add(listTwo.get(i));		   // Add the current element in listTwo to newList
+		}
+		
+		// We start adding elements from the longer list from the element # that matches the length of the shorter.
+		if (firstShorter) {
+			for(int i = sizeOfShorter; i < listTwo.size(); i++) {	// Loop from where we left off to end of second list.
+				newList.add(listTwo.get(i));	// Add the current element in listTwo to the new list
+			}
+			
+		}
+		else {	// If the second one was shorter - add the remaining element from the first
+			for(int i = sizeOfShorter; i < listOne.size(); i++) {	// Loop from where we left off to end of second list.
+				newList.add(listOne.get(i));	// Add the current element in listTwo to the new list
+			}
+		}
+	
+		// Add the remaining elements from the longer list to the new list 
+		return newList;
 	}
 
 }

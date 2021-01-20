@@ -44,7 +44,7 @@ public class StackAndQueueExamples {
 		myStack.push("McCoy");
 		myStack.push("Uhura");
 		myStack.push("Scotty");	
-		myStack.push("Piccard");
+		myStack.push("Picard");
 		myStack.push("Worf");
 		myStack.push("Riker");
 		myStack.push("Geordi");
@@ -101,6 +101,8 @@ public class StackAndQueueExamples {
  *                      you must cast reference to type necessary
  * 
  **********************************************************************************/
+		
+		// A queue is a LinkedList object - a Queue IS a LinkedList
 	
 		LinkedList <String> myQueue = new LinkedList<String>();	    
 		//myQueue.

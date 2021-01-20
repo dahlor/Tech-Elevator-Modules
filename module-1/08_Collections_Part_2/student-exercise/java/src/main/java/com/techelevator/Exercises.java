@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Exercises {
@@ -34,7 +35,42 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
+		
+		String groupName = "";
+		
+		if (animalName == null) {
+			return "unknown";
+		}
+		
+		// Set up a Map to associate the animal name to the group name
+		// key - animal name in lowercase
+		// value - group name
+		
+		Map<String, String> animalGroups = new HashMap(); // Key & value both Strings
+		
+		animalGroups.put("rhino", "Crash");
+		animalGroups.put("giraffe", "Tower");
+		animalGroups.put("elephant", "Herd");
+		animalGroups.put("lion", "Pride");
+		animalGroups.put("crow", "Murder");
+		animalGroups.put("pigeon","Kit");
+		animalGroups.put("flamingo", "Pat");
+		animalGroups.put("deer", "Herd");
+		animalGroups.put("dog", "Pack");
+		animalGroups.put("crocodile", "Float");
+		
+		// Look to see if the animal given is in the map - case insensitivity
+		
+		groupName = animalGroups.get(animalName.toLowerCase()); // convert what is given to lowercase
+																// for the search
+	
+		// Check to be sure the animal was in the Map, if not set the group name to "unknown".
+		
+		if (groupName == null ) {	// .get() returns null if the key is not in the Map
+			groupName = "unknown";
+		}
+		
+		return groupName;
 	}
 
 	/*
