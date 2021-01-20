@@ -32,17 +32,22 @@ public class CommandLineSampleProgram {
 		System.out.println("You entered the line: " + aLine);   // Display the line entered by the user
 		
 		System.out.println("Please enter a whole number: ");
-		aLine = userInput.nextLine();							// Get a line from the keyboard
-		System.out.println("You entered the number: " + aLine); // Show them what we got
+		// used to be aLine = usetInput.nextLine();
+		int aNumber = userInput.nextInt();	// Get an int from the keyboard
+		userInput.nextLine(); 				// Remove enter left in keyboard buffer by nextInt
+											// 	so subsequent keyboard requests allow user to type more input.
+		
+		System.out.println("You entered the number: " + aNumber); // Show them what we got
 		
 		// We want to divide what half of the user entered by 2 to get half the value
 		// We stored what they entered as a String which cannot be used in arithmetic
 		// We need to convert the value in the String to a numeric value so we can do arithmetic
 		// We can use the Integer.parseInt() or Double.parseDouble() to convert a String to a numeric
 		
-		int theNumber = Integer.parseInt(aLine); // Convert what is in aLine to an int and store in the number
+		// No longer need to convert the user input to an int from a String because we are getting an int
+		// int theNumber = Integer.parseInt(aLine); // Convert what is in aLine to an int and store in the number
 		
-		System.out.println("Half of that number is: " + theNumber / 2);
+		System.out.println("Half of that number is: " + aNumber / 2);
 		
 		
 		// Get a series of values from a user and determine the sum and average

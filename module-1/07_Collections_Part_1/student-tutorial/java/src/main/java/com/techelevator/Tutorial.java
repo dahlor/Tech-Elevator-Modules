@@ -12,17 +12,31 @@ public class Tutorial {
 
     	// Step One: Declare a List
 
+    	List<String> nameList = new ArrayList<String>();
     	
     	// Step Two: Add values to a List
 
+    	nameList.add("Bob");
+    	nameList.add("Rory");
+    	nameList.add("Steve");
     	
     	// Step Three: Looping through a List in a for loop
 
+    	for(int i = 0; i < nameList.size(); i++) {
+    		System.out.println("These are the names: " + nameList.get(i));
+    	}
     	
     	// Step Four: Remove an item
+    	
+    	nameList.remove(0);
+    	
 
     	
     	// Step Five: Looping through List in a for-each loop
+    	
+    	for(String loop : nameList) {
+    		System.out.println("These are the names: " + loop);
+    	}
 
     }
 

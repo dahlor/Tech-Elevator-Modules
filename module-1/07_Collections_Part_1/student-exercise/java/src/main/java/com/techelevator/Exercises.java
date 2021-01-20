@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Exercises {
@@ -16,7 +17,17 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		return null;
+		
+		ArrayList<String> result = new ArrayList();
+		
+		// Go through the array that is passed in, one element at a time - for loop
+		// Assign each element in the array to the ArrayList
+		
+		for(int i = 0; i < stringArray.length; i++) {
+			result.add(stringArray[i]); // add the current element to the array list
+		
+		}		
+		return result;
 	}
 
 	/*
@@ -25,8 +36,11 @@ public class Exercises {
 	 list2Array( ["Red", "Orange", "Yellow"] )  ->  {"Red", "Orange", "Yellow"}
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
-	public String[] list2Array(List<String> stringList) {
-		return null;
+		public String[] list2Array(List<String> stringList) {
+		
+		String[] convertArray = stringList.toArray(new String[stringList.size()]);
+		
+		return convertArray;
 	}
 
 	/*
@@ -37,7 +51,8 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+	
+		
 	}
 
 	/*
@@ -57,7 +72,9 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 64362
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+	
+		int maxList = Collections.max(integerList);
+		return maxList;
 	}
 
 	/*
