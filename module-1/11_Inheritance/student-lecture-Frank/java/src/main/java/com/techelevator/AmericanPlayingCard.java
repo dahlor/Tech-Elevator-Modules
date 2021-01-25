@@ -7,9 +7,15 @@ import java.util.TreeMap;
  * American Playing Card Class - subclass of generic PlayingCard
  ***************************************************************************************************/
 
-public class AmericanPlayingCard extends PlayingCard{
+public class AmericanPlayingCard extends PlayingCard{  // extends indicates this is a subclass of PlayingCard
 	/************************************************************************************************
 	 * Constants for values related to American Playing Cards
+	 * 
+	 * Since constants cannot be changed (final) we make them:
+	 * 
+	 *		static - only one occurrance of the variable regardless of the number of objects defined
+	 *		final - they cannot be changed once they are assigned a value
+	 * 
 	 ***********************************************************************************************/	
 	private static final int    DEFAULTCARDVALUE = 0;
 	private static final String DEFAULTCOLOR     = "BLACK";
@@ -19,6 +25,10 @@ public class AmericanPlayingCard extends PlayingCard{
 
 	/**************************************************************************************************
 	 * Maps used to validate/limit suits, colors and value names for American Playing Cards
+	 * 
+	 * Use static to have only one occurrence of the variable shared by all objects
+	 * Since the contents of these Maps will be same for all American PlayingCards, 
+	 * we don't need more than one.
 	 *************************************************************************************************/	
 	
 	private static Map<String,  String> suitMap  = new HashMap<String , String>();  
@@ -26,22 +36,29 @@ public class AmericanPlayingCard extends PlayingCard{
 	
 	/***************************************************************************************************
 	 *Invoke method to populate maps with valid suits, colors & value names for American Playing Cards
+	 *		When the first object of the class is instantiated.
 	 **************************************************************************************************/	
 	
+	// Use an anonymous method (one without a name) to call/invoke the initializeMaps method
 	static {             // static method to initialize maps before are ever used
        initializeMaps();
     }
 	/***************************************************************************************************
-	 * 0-arg / Default Constructor
+	 * 0-arg / Default Constructor for the subclass - must run a ctor for the superclass
+	 * 					The superclass has only one ctor that takes 3-args: value, suit, color
 	 **************************************************************************************************/		
 	public AmericanPlayingCard() 
-	{
+	{	// the keyword super references the super class - super() represents a super class ctor
 		super(DEFAULTCARDVALUE, DEFAULTSUIT, DEFAULTCOLOR);  // Invoke 3-arg ctor in superclass
 	} 
 	/***************************************************************************************************
-	 * 2-arg Constructor for a user provided value and suit
+	 * 2-arg Constructor for a user provided value and suit - must run a ctor for its superclass
+	 * 					The superclass has only one ctor that takes 3-args: value, suit, color
 	 ***************************************************************************************************/	
 	public AmericanPlayingCard(int value, String suit) {
+		// run the superclass 3-arg ctor with the value and suit passed from the user and the color 
+		// 		based on the suit (using suitMap to get color)
+		
 		super(value, suit, suitMap.get(suit));       // Determine color and call super class 3-arg ctor
 	
 		if (value > MAXVALUE) {                      // If value provided is greater than max value allowed         
@@ -53,6 +70,8 @@ public class AmericanPlayingCard extends PlayingCard{
 	}
 	/****************************************************************************************************
 	 * Initialize Maps to valid suit/color combinations and value names
+	 * 
+	 * Setup the Maps with the suit/color and value/name associations.
 	 ***************************************************************************************************/	
 	private static void initializeMaps() {
 		suitMap.put("SPADES"  , "BLACK");
