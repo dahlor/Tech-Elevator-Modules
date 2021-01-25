@@ -133,6 +133,11 @@ public class PlayingCard {
 	//------------------------------------------------------------------------------------------------------
     // This is our toString() which will return a PlayingCard object at a String
 	
+	// The default toString() is the Object class toString() for all classes
+	//
+	// Usually the default behavior of the Object class toString() is not desiriable
+	// So we override the Object toString() with our own for this class
+	
 	
 	public String toString() {
 		return "PlayingCard [cardValue=" + cardValue + ", cardSuit=" + cardSuit + ", cardColor=" + cardColor

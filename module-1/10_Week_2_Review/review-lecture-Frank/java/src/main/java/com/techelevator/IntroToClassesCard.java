@@ -73,6 +73,16 @@ public class IntroToClassesCard {
 		System.out.println("After flip(), Is the card face up? " + theCard.isShowing());
 		
 		System.out.println("-----------------------------------------------------------------------------------");
+		
+		PlayingCard card4 = new PlayingCard(3, "Diamonds");
+		PlayingCard card5 = new PlayingCard(3, "Diamonds");
+
+		
+		if (card4.equals(card5)) {
+			System.out.println("card4 IS equal to card5");
+		} else {
+		System.out.println("card4 IS NOT equal to card5");
+		}
 	}
 }
 		 

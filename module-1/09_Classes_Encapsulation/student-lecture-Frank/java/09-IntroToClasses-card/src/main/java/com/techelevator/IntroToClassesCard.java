@@ -52,7 +52,7 @@ public class IntroToClassesCard {
 			
 			System.out.println("The value of the card is " + anotherNotherCard.getCardValue());
 			
-			anotherNotherCard.setCardValue();
+			anotherNotherCard.setCardValue(7);
 			System.out.println("The value of the card is " + anotherNotherCard.getCardValue());
 
 	}
