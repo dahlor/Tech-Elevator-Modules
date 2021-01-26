@@ -41,5 +41,23 @@ public class BankAccount implements Accountable{
         balance = balance - amountToWithdraw;
         return balance;
     }
+    
+    public int transferTo(BankAccount destinationAccount, int transferAmount) {
+    	withdraw(transferAmount);
+    	destinationAccount.deposit(transferAmount);
+    	return getBalance();
+    }
+    
+    
+    
+    // the transferTo takes the destination-account and amount as parameters
+    //		aBankAccountObject(destination-account, amount)
+    //
+    //		transfer the amount from the BankAccountObject in from the . to the destination
+    //
+    //		jasonAcct.transferTo(frankAcct,1000) = this will transfer $1000 from Jason's account
+    //											   to Frank's account.
+    //											   Return the balance from jasonAcct (Sending account)
+    //		
 
 }
