@@ -1,11 +1,13 @@
 package com.techelevator;
 
-import java.util.ArrayList;
+import java.util.ArrayList
 import java.util.Collections;
 import java.util.LinkedList;
 
+// Simulator a deck of PlayingCards
 
 public class CardDeck {
+	// LinkedList is Queue - FIFO Collection - first item is in the first item out
 	LinkedList<PlayingCard> deckOfCards = new LinkedList<PlayingCard>();
 	private int numCardsInDeck = 54;
 
@@ -30,39 +32,39 @@ public class CardDeck {
 	}
 
 	public PlayingCard dealCard() {
-		if (deckOfCards.size() > 0) {
-			return deckOfCards.remove();
+		if (deckOfCards.size() > 0) {	 // As long as there are cards in the deck
+			return deckOfCards.remove(); // return the top/first card and remove it from the queue
 		}
 		else {
-			 return null;
+			 return null;				// If no cards in the deck, return null
 		}
 	}
 
 	public void resetDeck(boolean withJoker) {
-		deckOfCards.clear();
+		deckOfCards.clear();			// Remove all the cards in the deck. 
 
-		for (int i = 1; i < 14; i++) {
+		for (int i = 1; i < 14; i++) { 	// Add all the Clubs to the deck 
 			deckOfCards.add(new PlayingCard(i, "CLUBS"));
 		}
-		for (int i = 1; i < 14; i++) {
+		for (int i = 1; i < 14; i++) {	// Add all the Hearts to the deck
 			deckOfCards.add(new PlayingCard(i, "HEARTS"));
 		}
-		for (int i = 1; i < 14; i++) {
+		for (int i = 1; i < 14; i++) {  // Add all the Spades to the deck
 			deckOfCards.add(new PlayingCard(i, "Spades"));
 		}
-		for (int i = 1; i < 14; i++) {
+		for (int i = 1; i < 14; i++) {  // Add all the Diamonds to the deck
 			deckOfCards.add(new PlayingCard(i, "DIAMONDS"));
 		}
 
-		if (withJoker) {
+		if (withJoker) {	// If they want Jokers, add them.
 			deckOfCards.add(new PlayingCard(0, "JOKER"));
 			deckOfCards.add(new PlayingCard(0, "JOKER"));
 		}
 	}
 
-	public void shuffleDeck() {
-		resetDeck(false);
-		Collections.shuffle(deckOfCards);
+	public void shuffleDeck() {				// Shuffle the deck
+		resetDeck(false);					// Give me a new deck of cards without Jokers
+		Collections.shuffle(deckOfCards);	// Use the Collections class shuffle
 	}
 
 }

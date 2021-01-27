@@ -32,8 +32,10 @@ public class UsePlayingCards {
 		
 	System.out.println("\n----- Polymorphism example follows ------ \n");
 		
-		
-		List<PlayingCard> someCards = new ArrayList<PlayingCard>();
+									//new Collection(what-it-holds)
+		List<PlayingCard> someCards = new ArrayList<PlayingCard>(); // By using the superclass as a type - put subclass objects in it 
+		// someCards is an object of type ArrayList of PlayingCard type objects - a subclass object includes superclass type
+		// We use an abstract class as a type NOT to instantiate an object - keyword new instantiates objects
 		
 		someCards.add(anItalianCard1);
 		someCards.add(aUSACard);

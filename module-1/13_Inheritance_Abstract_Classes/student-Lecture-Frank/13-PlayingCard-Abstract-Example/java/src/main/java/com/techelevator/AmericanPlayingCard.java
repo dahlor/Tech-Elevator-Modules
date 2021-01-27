@@ -14,6 +14,9 @@ public class AmericanPlayingCard extends PlayingCard{
 	private static Map<String,  String> suitMap  = new HashMap<String , String>();  
 	private static Map<Integer, String> valueMap = new TreeMap<Integer, String>();
 	
+	
+	// by making the method that calls initializeMaps() static and anonymous
+	//	it will be run automatically when a process that instantiates this class is run
 			static {             // static method to initialize maps before are ever used
 		       initializeMaps();
 	        }
@@ -58,7 +61,11 @@ public class AmericanPlayingCard extends PlayingCard{
 		valueMap.put(13,"King");
 	}
 	
-	@Override
+	// a subclass may override a superclass method if it wants to change
+	// the behavior of the superclass method
+	
+	@Override // asks the compiler to verify that the method that follows is a valid Override
+			  // An overriding method must have the same name, same number or parameters
 	public String toString() {
 		return "AmericanPlayingCard: " 
 	          +"Value: "  + valueMap.get(getValue())

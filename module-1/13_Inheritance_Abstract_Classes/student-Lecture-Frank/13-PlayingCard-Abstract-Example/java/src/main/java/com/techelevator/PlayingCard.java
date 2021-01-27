@@ -1,8 +1,14 @@
 package com.techelevator;
 
+// abstact is an attribute that can never be instantiated
+// an abstract class can only be a super class
+// It provided a generic description of an object, the subclass refined the description by adding/removing variables and methods
+
 public class PlayingCard {
 	
-	private int value;    
+	// protected violates the strict interpretation of encapsulation
+	
+	protected int value;		// only members of this class and any subclass can access    
 	private String color;    
 	private String suit;     
 	
@@ -22,8 +28,11 @@ public class PlayingCard {
 	public String getSuit() {
 		return suit;
 	}
+	
+	//the this keyworld always means the current object - object to the left
+	// of the dot that invoked this method
 	public void setValue(int value) {
-		this.value = value;
+		this.value = value;				// the object used to invoke setValue should be assigned to the parameter value
 	}
 	public void setColor(String color) {
 		this.color = color;
@@ -38,8 +47,9 @@ public class PlayingCard {
 	}
 	
 	@Override   // Ask compiler to verify this is a proper Override - same name, same parameters, same return-type
+	//since the Object class equals receives an Object and returns a boolean, we must do the same thing
 	public boolean equals(Object obj) {  // Receive any type of Object
-		if (this == obj) {  // If compare a PlayingCard to itself
+		if (this == obj) {  // If compare a PlayingCard to itself - this represents the object to the left of .equals
 			return true;
 		}
 		if (obj == null) {  // If compare to an undefined PlayingCard
@@ -60,7 +70,8 @@ public class PlayingCard {
 		}
 		return true;
 	}
-
-	public void showCard() {}  // Required for Polymorphism - does nothing
+		// an abstract method is defined when a superclass wants to insure any subclass defines/overrides the method
+		// we don't know what the abstract method should do in the superclass, we just know we want the method
+		public abstract void showCard() {}  // subclass MUST override this method
 		
 }

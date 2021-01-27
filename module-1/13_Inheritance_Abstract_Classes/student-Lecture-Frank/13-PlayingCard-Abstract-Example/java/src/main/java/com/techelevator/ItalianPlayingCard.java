@@ -22,7 +22,7 @@ public class ItalianPlayingCard extends PlayingCard {
 	} 
 
 	public ItalianPlayingCard(int value, String suit) {
-		super(value, suit, suitMap.get(suit));{
+		super(value, suit, suitMap.get(suit));{ // potential error - this will fail if Maps are not initialized
 	
 		if (value > MAXVALUE) {
 			setValue(MAXVALUE);
@@ -33,7 +33,7 @@ public class ItalianPlayingCard extends PlayingCard {
 		if (value > 7 && value < 10) {
 			setValue(MINVALUE);
 		}
-		initializeMaps();
+		initializeMaps(); // Initialize the maps again
 		}
 		
 	}
