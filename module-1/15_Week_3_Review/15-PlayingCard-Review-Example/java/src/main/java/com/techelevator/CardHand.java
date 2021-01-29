@@ -13,6 +13,9 @@ public abstract class CardHand   implements ValidCardHand  {
 	 ***********************************************************************************************/
 	
 	int       numCardsInHand;               // Maximum number of cards in hand
+	// protected means any subclass has access to member of the class
+	// we want to allow any subclass of CardHand to access aHand directly without having to use methods
+	
 	protected ArrayList<PlayingCard> aHand; // Reference to the PlayingCard Hand 
 
 	/***********************************************************************************************
@@ -50,7 +53,9 @@ public abstract class CardHand   implements ValidCardHand  {
 	}
 
 @Override     // Ask compiler to check to be sure this is a valid override of superclass or interface method
-	public abstract void dealHand(CardDeck aDeck);
+	public abstract void dealHand(CardDeck aDeck);  // We don't know how to  deal a hand - that is up to the game
+													// We have to define dealHand because the implement requires
+													// it.
 
 @Override     // Ask compiler to check to be sure this is a valid override of superclass or interface method	
 	public void show() {                // Display each card in Hand

@@ -3,7 +3,9 @@ package com.techelevator;
  * Class to Simulate an PokerHand using and American PlayingCard Hand
  ***************************************************************************************************/
 
-public class PokerHand  extends CardHand {
+public class PokerHand  extends CardHand { // This is a subclass of CardHand
+										   // All it needs to do is define whatever is different
+										   //	from CardHand.
 	
 /***************************************************************************************************
  * Member Data
@@ -47,6 +49,9 @@ public class PokerHand  extends CardHand {
 		super.clearHand();
 	}
 
+	// This defines the abstract method specified in the superClass
+	// The subclass must define any abstract class that is in the superClass
+	
 	public void dealHand(CardDeck aDeck) {             // Deal a Hand
 		for (int i=0; i < NUMBERCARDSINHAND; i++ ) {   // For the number of cards in hand
 			super.aHand.add(aDeck.dealCard());         //     Add a card from deck passed to hand
@@ -58,8 +63,8 @@ public class PokerHand  extends CardHand {
 	 ***************************************************************************************************/
 
 	@Override
-	public void show() {
-		super.show();
+	public void show() {	// The subclass method - not really required since we aren't changing behavior
+		super.show();		// 	   runs the superclass
 	}
 
 	/****************************************************************************************************

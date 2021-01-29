@@ -1,4 +1,6 @@
 package com.techelevator;
+// An interface defines methods that must be implemented/coded if a Class implements this interface
+
 
 public interface ValidCardHand {
 	

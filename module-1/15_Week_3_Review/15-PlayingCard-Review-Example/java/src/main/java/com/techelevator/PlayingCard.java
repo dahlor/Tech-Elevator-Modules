@@ -95,6 +95,7 @@ public class PlayingCard {
 	 * setter methods
 	 ***************************************************************************************************/
 	public CardValue setValue(int ivalue) {  // Set the CardValue based on an int value
+		// A switch is alternative to a series of if/else statements
 		switch (ivalue) {
 		case 1:
 			return CardValue.ONE;
@@ -158,7 +159,7 @@ public class PlayingCard {
 		StringBuffer stringCard = new StringBuffer();  // Define an object to hold String version of object
 
 		int firstColumnSize = 16;                      // position of first tab position of screen line 
-
+// Use the .append() rather than the + to concatenate with StringBuffer
 		stringCard.append("Value: " + value);          // Add literal to StringBuffer
 		stringCard.append(" (" + getIntValue() + ")"); // Add integer value of CardValue to StringBuffer
 		if (stringCard.length() < firstColumnSize) {   // If current StringBuffer size less than first tab position
