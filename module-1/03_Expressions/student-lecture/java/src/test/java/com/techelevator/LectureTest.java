@@ -15,10 +15,13 @@ public class LectureTest {
     @Test
     public void testReturnNotOne() {
         assertNotEquals("Value returned shouldn't be one", 1, exercises.returnNotOne());
+    // Check to see if the value returns from the returnNotOne() methos is NotEqual1
     }
 
     @Test
-    public void testReturnNotHalf() {
+    public void testReturnNotHalf() {	
+    	// When checking double values for equals/not equals, a fudge-factor is specified due to the imprecision of doubles
+    	//				message-if-test-fails,          expected,                     fudge-factor
         assertNotEquals("Value returned shouldn't be 0.5", 0.5, exercises.returnNotHalf(), 0.001);
     }
 

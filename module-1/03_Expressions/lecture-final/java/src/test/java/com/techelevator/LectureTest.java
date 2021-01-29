@@ -10,10 +10,10 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LectureTest {
 
-    private Lecture exercises = new Lecture();
-
+    private Lecture exercises = new Lecture(); // define an object containing the methods to be tested
+    // Instantiate the lecture code
     @Test
-    public void testReturnNotOne() {
+    public void testReturnNotOne() {				// testing the returnNotOne() method in lecture code
         assertNotEquals("Value returned shouldn't be one", 1, exercises.returnNotOne());
     }
 
