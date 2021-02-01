@@ -11,10 +11,8 @@ public class WordSearch {
 		// Print dat sexy banner
 		printApplicationBanner();
 		
-		// Instantiate my jabberwocky
+		// Instantiate my jabberwocky & a jabberwocky Scanner object
 		File aliceFile = new File("./alices_adventures_in_wonderland.txt");
-		
-		// Instantiate a Scanner object for the jabberwocky
 		Scanner aliceReader = new Scanner(aliceFile);
 		
 		// Getting all the inputs inputted
@@ -30,12 +28,12 @@ public class WordSearch {
 		int counter = 1;
 		
 		// If/Else for what to do depending on the case sensitivity answer.
-		if (caseSensitive.toUpperCase() == "Y") {
+		if (caseSensitive.contains("Y") || caseSensitive.contains("y")) {
 			// Look for the word in the text
 			while(aliceReader.hasNext()) { 					 
-				String aLine = aliceReader.nextLine().toLowerCase();
-				if (aLine.contains(searchedWord.toLowerCase())){
-					System.out.println(counter + ") " + aLine);		 
+				String aLine = aliceReader.nextLine();
+				if (aLine.contains(searchedWord)){
+					System.out.println(counter + ") " + aLine);
 					}
 				counter++;
 			}			
@@ -43,7 +41,7 @@ public class WordSearch {
 			// Look for the word in the text
 			while(aliceReader.hasNext()) { 					 
 				String aLine = aliceReader.nextLine();
-				if (aLine.contains(searchedWord)){
+				if (aLine.toLowerCase().contains(searchedWord.toLowerCase())){
 					System.out.println(counter + ") " + aLine);		 
 					}
 				counter++;
