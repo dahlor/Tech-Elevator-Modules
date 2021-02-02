@@ -15,13 +15,14 @@ public class ExceptionsLecture {
 		 * code to handle it. */
 		System.out.println("The following cities: ");
 		String[] cities = new String[] { "Cleveland", "Columbus", "Cincinatti" };
-		try {
+		
+		try {	// If the code in this block throws an Exception, let me see if I can handle it instead of terminating program
 			System.out.println(cities[0]);
 			System.out.println(cities[1]);
 			System.out.println(cities[2]);
 			System.out.println(cities[3]);  // This statement will throw an ArrayIndexOutOfBoundsException
 			System.out.println("are all in Ohio."); // This line won't execute because the previous statement throws an Exception
-		} catch(ArrayIndexOutOfBoundsException e) {
+		} catch(ArrayIndexOutOfBoundsException e) { // If this Exception occurs in the preceding try block, I'll handle it
 			// Flow of control resumes here after the Exception is thrown
 			System.out.println("XXX   Uh-oh, something went wrong...   XXX");
 		}
@@ -90,7 +91,7 @@ public class ExceptionsLecture {
 			doSomethingDangerous(); // throws an ArrayIndexOutOfBoundsException
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("AN EXAMPLE OF A STACKTRACE:");
-			e.printStackTrace(); // will print the Exception stacktrace to the terminal
+			e.printStackTrace(); // will print the Exception stacktrace to the terminal using the Exception object
 		}
 		System.out.println();
 	}
@@ -103,10 +104,10 @@ public class ExceptionsLecture {
 		final double ROOM_RATE = 85;
 		
 		/* The throw statements below demonstrate how to throw a new Exception. */
-		if(nights < 1) {
-			throw new IllegalArgumentException("Minimum number of nights is 1");
-		} else if(numberOfGuests < 1) {
-			throw new IllegalArgumentException("Minimum number of guests is 1");
+		if(nights < 1) { // If less than the minimum number of nights
+			throw new IllegalArgumentException("Minimum number of nights is 1");  // Throw a System exception
+		} else if(numberOfGuests < 1) { // If less than the minimum number of guests
+			throw new IllegalArgumentException("Minimum number of guests is 1");  // Throw a System exception
 		}
 		
 		int numberOfExtraGuests = 0;
@@ -125,7 +126,7 @@ public class ExceptionsLecture {
 		double newBalance;
 		if(amountToWithdraw <= currentBalance) {
 			newBalance = currentBalance - amountToWithdraw;
-		} else {
+		} else {	// if the account is overdrawn - throw our custom overdraft exception with the appropriate parameters
 			throw new OverdraftException("The requested withdrawal amount is greater than the current balance", Math.abs(currentBalance - amountToWithdraw));
 		}
 		return newBalance;		
@@ -135,6 +136,8 @@ public class ExceptionsLecture {
 		int[] numbers = new int[5];
 		for(int i = 0; i < 10; i++) {
 			numbers[i] = i;  // this line will throw an Exception once i reaches 5
+						     // Since this method does not have the code in a try block, therefore cannot catch it
+							 // The Exceltion will 'bubble up' to whatever called this method
 		}
 		System.out.println("Look Ma, no Exceptions!");  // This line will not execute because an Exception will be thrown inside the for loop
 	}

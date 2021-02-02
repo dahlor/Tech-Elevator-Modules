@@ -12,6 +12,8 @@ public class Lecture {
 		Scanner userInput = new Scanner(System.in);
 		
 		/* 
+		 * When you have a File object instantiated you can do a lot of stuff with it
+		 * 
 		 * The java.io.File class is a representation of file and directory path names.  It provides methods to inspect and 
 		 * modify file system objects.
 		 * 
@@ -26,6 +28,19 @@ public class Lecture {
 
 		/* 
 		 * The File class allows us to inspect various attributes of a file system object 
+		 * 
+		 * The File class provides many methods to allow you to access the file system of your computer
+		 * 
+		 * Does a file exists?
+		 * How long is the file? (How many chars are in the file 0=file is empty)
+		 * Create new empty files
+		 * Create new directories
+		 * Remove/delete files
+		 * Remove/delete directories
+		 * 
+		 * Many of the things you can do command line, you do in a program with a File object.
+		 * 
+		 * 
 		 */
 		 
 		/* ***************************
@@ -80,9 +95,10 @@ public class Lecture {
 		System.out.println("Now let's put a file in the directory.");
 		System.out.print("Enter a name for the new file >>> ");
 		String fileName = userInput.nextLine();
-		File newFile = new File(newDirectory, fileName);
-		
-		newFile.createNewFile();
+		File newFile = new File(newDirectory, fileName);	// Define a file object for the directory and file we want to create
+															// If directory is omitted, we assume the default directory
+															// 	which is the same as the project directory
+		newFile.createNewFile();	// Create a new empty file specified in the File object
 		System.out.println();
 		System.out.println("name: "+newFile.getName());
 		System.out.println("absolutePath: "+newFile.getAbsolutePath());
@@ -98,9 +114,12 @@ public class Lecture {
 		System.out.print("Enter a message to be stored in the new file >>> ");
 		String message = userInput.nextLine();
 		
-		try(PrintWriter writer = new PrintWriter(newFile)) {
-			writer.println(message);
+		// Create a PrintWriter object using the File object for the file you want to write to
+		try(PrintWriter writer = new PrintWriter(newFile)) { // Putting the PrintWriter instantiation in a try so we don't have to close it
+			writer.println(message); // Use the same methods as you did with System.out.println, .print, .printf, etc.
 		} // When we exit the try block, this cause the file to be closed and an automatic flush of the buffer to trigger
+		
+		
 		
 		System.out.println();
 		System.out.println("name: "+newFile.getName());

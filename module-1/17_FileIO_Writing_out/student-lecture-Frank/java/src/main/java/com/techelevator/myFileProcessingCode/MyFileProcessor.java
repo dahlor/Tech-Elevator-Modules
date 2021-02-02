@@ -2,6 +2,8 @@ package com.techelevator.myFileProcessingCode;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class MyFileProcessor {
@@ -9,10 +11,10 @@ public class MyFileProcessor {
 	/*********************************************************************************
 	 * This program will read each line from the numbers.txt file
 	 * and write each number in the line and the sum of those numbers to a file
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 *********************************************************************************/
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		
 		// Define the input file and Scanner object to read it - file is in the data folder of the project folder
 		File myFile = new File("./data/numbers.txt");  // Assign a File object to numbers.txt
@@ -20,10 +22,26 @@ public class MyFileProcessor {
 		// Check to be sure the File Object is assigned an existing file - terminate if not
 		if (!myFile.exists() || !myFile.isFile()) {
 			System.out.println("path specified is not an existing file");
-			System.exit(16);   // terminate program
+			System.exit(16);   // terminate program with a return code 16
+							   // When a program uses the exit() method, an optional 
+							   // 		return code may be sent back
+							   // If the program was run from a shell script, the
+							   // 		return code can be checked so the script may take action
+							   //		based on the return code
+							   // The meaning of a return value depends on the script running the program
+							   // Return are usually a multiple of 4 - a tradition from the ancient days
+							   // In general, a return code 0 means OK, not 0 means not OK
 		}
 		
 		Scanner theFile = new Scanner(myFile);         // Assign the File Object to a Scanner
+		
+		//Define the output file we are writing the program to;
+		File outputFile = new File("program.out");
+		
+		// Create the file on the disk - file must exist before we can write to it
+		outputFile.createNewFile();
+		
+		PrintWriter fileWriter = new PrintWriter(outputFile);
 		
 		int lineTotal  = 0;  // hold the sum of the numbers in the line we read
 		String theLine = ""; // hold the line with the numbers from the file
