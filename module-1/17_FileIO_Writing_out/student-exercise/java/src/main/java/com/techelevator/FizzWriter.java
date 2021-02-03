@@ -24,16 +24,24 @@ public class FizzWriter {
 			int counter = 0;
 	
 			// Value Plinko.
-			if((i % 5 == 0) && (i % 3 == 0)) {
-			fizzWriter.write("#"+i+": " + "FizzBuzz\n");
+			if((i.toString().contains("135"))) {
+			fizzWriter.write("#"+i+": " + "FizzBuzz and also Fizz and Buzz separately.\n");	
+			counter++;
+			}	
+			if(((i % 5 == 0) && (i % 3 == 0)) && counter == 0) {
+			fizzWriter.write("#"+i+": FizzBuzz\n");
 			counter++;	
 			}
+			if((i.toString().contains("5") && i.toString().contains("3")) && counter == 0) {
+			fizzWriter.write("#"+i+": Both Fizz and Buzz, but separately.\n");	
+			counter++;
+			}
 			if((i % 3 == 0 || i.toString().contains("3")) && counter == 0) {
-			fizzWriter.write("#"+i+": " + "Fizz\n");	
+			fizzWriter.write("#"+i+": Fizz\n");	
 			counter++;
 			}
 			if((i % 5 == 0 || i.toString().contains("5")) && counter == 0) {
-			fizzWriter.write("#"+i+": " + "Buzz\n");	
+			fizzWriter.write("#"+i+": Buzz\n");	
 			counter++;
 			}	
 			if((i % 5 != 0) && (i % 3 != 0) && !i.toString().contains("5") && !i.toString().contains("3")) {
