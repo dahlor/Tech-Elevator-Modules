@@ -17,6 +17,7 @@ public class Module1CodingAssessment {
 		
 		File aFile = new File("./FlowerInput.csv");
 
+		@SuppressWarnings("resource")
 		Scanner inputDataFile = new Scanner(aFile);
 
 		while(inputDataFile.hasNext()) {	
