@@ -10,11 +10,17 @@
 
 -- Show Populations of all countries in acscending order
 
+select name, population from country order by population asc;
 
 -- Show Populations of all countries in descending order
 
+select name, population from country order by population desc;
 
 -- Show  the n ames of countries and continents in ascending order
+
+select name, continent 
+from country 
+order by continent asc, name asc;
 
 --------------------------------------------------------------------------------------------------------
 -- Limiting the number of rows in the result
@@ -24,6 +30,11 @@
 --
 -- Show the name and average life expectancy of the countries with the 10 highest life expectancies.
 
+select name, lifeexpectancy 
+from country 
+where lifeexpectancy is not null
+order by lifeexpectancy desc 
+limit 10;
 
 --------------------------------------------------------------------------------------------------------
 -- Concatenating values 
@@ -35,7 +46,7 @@
 -- of all cities in California, Oregon, or Washington.
 -- sorted by state then city
 
-
+select name || ', ' || district from city where district in ('California', 'Oregon', 'Washington');
 
 --------------------------------------------------------------------------------------------------------
 -- Aggregate functions - produce one row in result for each group specified
@@ -59,17 +70,45 @@
 --
 -- Show average life expectancy in the world
 
+select avg(lifeexpectancy) as Average_World_Life_Expectancy 
+from country;
+
+-- Show average life expectancy for each continent
+
+select continent, avg(lifeexpectancy) as Average_World_Life_Expectancy 
+from country
+group by continent
+order by continent asc
+;
 
 -- Show the total population in Ohio
 
+select sum(population) as Ohio_Total_Population 
+from city 
+where district = 'Ohio'; 
 
 -- Show the surface area of the smallest country in the world
+
+select name, surfacearea 
+from country 
+order by surfacearea asc 
+limit 1;
 
 
 -- Show The 10 largest countries (by surface area) in the world
 
+select name, surfacearea 
+from country
+order by surfacearea desc 
+limit 10;
+
 
 -- Show the number of countries who declared independence in 1991
+
+select count(*)
+from country
+where indepyear = '1991'
+;
 
 --------------------------------------------------------------------------------------------------------
 -- GROUP BY  - Specify the group to which the aggregate functions apply
@@ -86,17 +125,38 @@
 
 -- Show the average life expectancy of each continent ordered from highest to lowest
 
-
+select continent, avg(lifeexpectancy) as Average_World_Life_Expectancy 
+from country
+group by continent
+order by avg(lifeexpectancy) desc
+;
 
 -- Exclude Antarctica from consideration for average life expectancy
 
-
+select continent, avg(lifeexpectancy) as Average_World_Life_Expectancy 
+from country
+where lifeexpectancy is not null
+group by continent
+order by avg(lifeexpectancy) desc
+;
 
 -- What is the sum of the population of cities in each state in the USA ordered by state name
 
-
+select district, sum(population)
+from city
+where countrycode = 'USA'
+group by district
+order by district asc
+;
 
 -- What is the average population of cities in each state in the USA ordered by state name
+
+select district, avg(population)
+from city
+where countrycode = 'USA'
+group by district
+order by district asc
+;
 
 
 --------------------------------------------------------------------------------------------------------
