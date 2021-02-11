@@ -76,6 +76,17 @@
 
 -- Show the last_name of all the actors in the movie FINDING ANACONDA
 
+select last_name -- columns in the result
+from actor
+        inner join
+        film_actor
+      on actor.actor_id = film_actor.actor_id
+        inner join
+        film
+      on film_actor.film_id = film.film_id
+where title = 'FINDING ANACONDA'
+;
+
 -- Let's find out who made payment 16666:
 
 -- Ok, that gives us a customer_id, but not the name. We can use the customer_id to get the name FROM the customer table

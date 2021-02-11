@@ -144,7 +144,7 @@ limit 10
 -- difference and absolute difference.
 -- (smallest difference: 1.00, 1.00, "Ecuador")
 
-select (gnp-gnpold) as gnp_difference, abs(gnp-gnpold) as absolute_gnp_difference, name
+select (gnpold-gnp) as gnp_difference, abs(gnpold-gnp) as absolute_gnp_difference, name
 from country
 where gnpold is not null
 order by absolute_gnp_difference asc
