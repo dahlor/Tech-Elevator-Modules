@@ -164,11 +164,15 @@ from store
 -- 12. A list of all stores by ID, the store’s street address, and the name of the store’s manager
 -- (2 rows)
 
-select store_id, address, first_name, last_name
-from staff
+select store.store_id, address.address, first_name, last_name
+from store
         inner join
         address
-        on staff.address_id = address.address_id
+        on store.address_id = address.address_id
+        join
+        staff
+        on store.manager_staff_id = staff.staff_id
+        order by store.store_id
 ;
 
 -- 13. The first and last name of the top ten customers ranked by number of rentals
@@ -201,18 +205,18 @@ from payment
 -- (NOTE: Keep in mind that while a customer has only one primary store, they may rent from either store.)
 -- (Store 1 has 7928 total rentals and Store 2 has 8121 total rentals)
 
-select store_id, address, count(payment.rental_id), sum(amount) as total_sales, round(avg(amount), 2) as average_sale
-from payment
+select store.store_id, address, count(*), sum(payment.amount) as total_sales, round(avg(payment.amount), 2) as average_sale
+from store
         inner join
-        rental
-        on payment.rental_id = rental.rental_id
-        join
-        staff
-        on rental.staff_id = staff.staff_id
-        join
         address
-        on staff.address_id = address.address_id
-        group by store_id, address
+        on store.address_id = address.address_id
+        join inventory
+        on store.store_id = inventory.store_id
+        join rental
+        on inventory.inventory_id = rental.inventory_id
+        join payment
+        on rental.rental_id = payment.rental_id
+        group by store.store_id, address.address_id
 ;
 
 -- 16. The top ten film titles by number of rentals
@@ -283,19 +287,19 @@ select first_name, last_name, count(*)
 from actor
         inner join
         film_actor
-        on actor.actor_id = film_actor.actor_id
+      on actor.actor_id = film_actor.actor_id
         join
         film
-        on film_actor.film_id = film.film_id
+      on film_actor.film_id = film.film_id
         join
         inventory
-        on film.film_id = inventory.film_id
+      on film.film_id = inventory.film_id
         join
         rental
-        on inventory.inventory_id = rental.inventory_id
-        group by first_name, last_name
-        order by count desc
-        limit 10
+      on inventory.inventory_id = rental.inventory_id
+group by actor.actor_id         -- group by unique values --unique 
+order by count desc
+limit 10
 ;
 
 -- 20. The top 5 “Comedy�? actors ranked by number of rentals of films in the “Comedy�? category starring that actor
