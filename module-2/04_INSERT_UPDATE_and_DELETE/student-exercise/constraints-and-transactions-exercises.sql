@@ -75,6 +75,8 @@ rollback;
 
 Begin transaction;
 
+// I added changed their category all manually. This is the last one.
+
 insert into film_category (film_id, category_id)
 values (996, 17)
 ;
@@ -110,6 +112,10 @@ rollback;
 -- 7. Add a copy of "Euclidean PI" to all the stores.
 
 Begin transaction;
+
+insert into inventory (film_id, store_id)
+values (1001, 1)
+;
 
 insert into inventory (film_id, store_id)
 values (1001, 2)
