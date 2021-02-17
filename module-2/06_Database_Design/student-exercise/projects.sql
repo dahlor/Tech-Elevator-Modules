@@ -4,7 +4,6 @@ drop table if exists employee cascade;
 drop table if exists department cascade;
 drop table if exists project cascade;
 drop table if exists employeeprojects cascade;
-drop table if exists departmentprojects cascade;
 
 --
 -- create Employee table
