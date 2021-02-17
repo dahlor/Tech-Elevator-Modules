@@ -1,5 +1,9 @@
 package com.techelevator.city;
 
+// This is the DAO concrete class which implements the methods required by the interface
+
+// The name of the class should be JDBCtable-nameDAO
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,24 +12,38 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
-public class JDBCCityDAO implements CityDAO {
+public class JDBCCityDAO implements CityDAO { // Implement the interface for the DAO
 
-	private JdbcTemplate jdbcTemplate;
+	// JdbcTemplate class contains all the necessary code to interace with a database using SpringDAOs
 	
-	public JDBCCityDAO(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+	private JdbcTemplate jdbcTemplate;		  // Define a reference variable for the a JdbcTemplate object
+	
+	public JDBCCityDAO(DataSource dataSource) {				// Constructor for the class that takes a datasource as a parameter
+		this.jdbcTemplate = new JdbcTemplate(dataSource);	// Instantiace a jdbcTemplate object using the datasource passed
+	}													    //		and assign it to the reference defined above.
 
-	@Override
+	// Create/Add a row to the table using the object of the class.
+	@Override // Ask the compiler to be sure we are overriding the method required by the DAO interface
 	public void save(City newCity) {
+		
+		// Define a String to hold the SQL statement we want to run
+
 		String sqlInsertCity = "INSERT INTO city(id, name, countrycode, district, population) " +
-							   "VALUES(?, ?, ?, ?, ?)";
+							   "VALUES(?, ?, ?, ?, ?)"; // the ? are placeholders for values specified when the statement is run
+														// in this example the values are coming from the object passed to method
+														// we don't know the values until run time and this method is called
 		newCity.setId(getNextCityId());
-		jdbcTemplate.update(sqlInsertCity, newCity.getId(),
-										  newCity.getName(),
-										  newCity.getCountryCode(),
-										  newCity.getDistrict(),
-										  newCity.getPopulation());
+		
+		// Run the SQL statement to access the database using the JdbcTemplate object
+		// Use the .update method because we are executing the INSERT which changed (updates) the database
+		// .update() wants the String with the SQL statement to be executed, followed by any values for the ? placeholders
+		//				    SQL statement, values-for-the-?'s - one value for each ? in the SQL statement String
+		
+		jdbcTemplate.update(sqlInsertCity, newCity.getId(),			// value for the first ? in the statement
+										  newCity.getName(),		// value for the second ? in the statement
+										  newCity.getCountryCode(),	// value for the third ? in the statement
+										  newCity.getDistrict(),	// value for the fourth ? in the statement
+										  newCity.getPopulation());	// value for the fifth ? in the statement
 	}
 	
 	@Override
