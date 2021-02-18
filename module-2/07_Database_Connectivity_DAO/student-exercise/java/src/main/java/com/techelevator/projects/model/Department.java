@@ -3,26 +3,29 @@ package com.techelevator.projects.model;
 public class Department {
 
 	// Declarations.
-	private int departmentId;
+	private Long departmentId;
 	private String departmentName;
 	
 	// Constructors.
 	public Department() {
-		departmentId = 0;
+		departmentId = null;
 		departmentName = "";
 	}
 	
-	public Department(int departmentId, String departmentName) {
+	public Department(String departmentName) {
+		this.departmentName = departmentName;
+	}
+	
+	public Department(Long departmentId, String departmentName) {
 		this.departmentId = departmentId;
 		this.departmentName = departmentName;
 	}
 	
-	
 	// Setters and getters.
-	public int getDepartmentId() {
+	public Long getDepartmentId() {
 		return departmentId;
 	}
-	public void setDepartmentId(int departmentId) {
+	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;
 	}
 	public String getDepartmentName() {

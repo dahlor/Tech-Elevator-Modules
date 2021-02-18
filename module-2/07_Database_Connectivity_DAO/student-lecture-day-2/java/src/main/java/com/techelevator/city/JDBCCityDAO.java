@@ -55,16 +55,23 @@ public class JDBCCityDAO implements CityDAO {  // implement the interface for th
 	}
 	
 	@Override
-	public City findCityById(long id) {
-		City theCity = null;
+	public City findCityById(long id) {		// return a City object for the city id passed in by the user
+		
+		City theCity = null;		// Define the object returned - initially it is null
+		
 		String sqlFindCityById = "SELECT id, name, countrycode, district, population "+
 							   "FROM city "+
-							   "WHERE id = ?";
+							   "WHERE id = ?";	// A placeholder (?) is used because we don't know what ID the user is sending us
+	
+		// Execute the SQL statement in the String including values /variables for the placeholders
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityById, id);
-		if(results.next()) {
-			theCity = mapRowToCity(results);
+		
+		// Since we are SELECTing by the primary key, we know only one row can possibly be returned
+		// SO we don't need a loop to process the data in the SQLRowSet
+		if(results.next()) {					// If a row was returned from the SELECT
+			theCity = mapRowToCity(results);	// Store it's values in the City object to be returned
 		}
-		return theCity;
+		return theCity;		// Return the City object created from the row in the database
 	}
 
 	@Override
@@ -82,9 +89,23 @@ public class JDBCCityDAO implements CityDAO {  // implement the interface for th
 	}
 
 	@Override
-	public List<City> findCityByDistrict(String district) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<City> findCityByDistrict(String districtWanted) {
+
+		ArrayList<City> listOfCities = new ArrayList<City>();
+		
+		String SQLFindCitiesByDistrict = "select name " + 
+										 "from city " + 
+										 "where district = ?";
+		
+		// Execute the SQL statement providing the parameter passed in by the user for placeholder in the statement
+		SqlRowSet citiesFromTable = jdbcTemplate.queryForRowSet(SQLFindCitiesByDistrict, districtWanted);
+		
+		while(citiesFromTable.next()) {
+			City theCity = mapRowToCity(citiesFromTable);
+			listOfCities.add(theCity);
+		}
+		
+		return listOfCities;
 	}
 
 	@Override

@@ -1,12 +1,14 @@
 package com.techelevator.projects.model;
 
 import java.util.Date;
+import java.time.LocalDate;
+
 
 public class Employee {
 	
 		// Declarations.
-		private int employeeId;
-		private int departmentId;
+		private Long employeeId;
+		private Long departmentId;
 		private String firstName;
 		private String lastName;
 		private Date birthDate;
@@ -15,8 +17,8 @@ public class Employee {
 		
 		// Constructors.
 		public Employee() {
-			employeeId = 0;
-			departmentId = 0;
+			employeeId = null;
+			departmentId = null;
 			firstName = "";
 			lastName = "";
 			birthDate = null;
@@ -24,7 +26,7 @@ public class Employee {
 			hireDate = null;
 		}
 		
-		public Employee(int employeeId, int departmentId, String firstName, String lastName, Date birthDate, char gender, Date hireDate) {
+		public Employee(Long employeeId, Long departmentId, String firstName, String lastName, Date birthDate, char gender, Date hireDate) {
 			this.employeeId = employeeId;
 			this.departmentId = departmentId;
 			this.firstName = firstName;
@@ -34,21 +36,20 @@ public class Employee {
 			this.hireDate = hireDate;
 		}
 		
-		
 		// Setters and getters.
-		public int getEmployeeId() {
+		public Long getEmployeeId() {
 			return employeeId;
 		}
 
-		public void setEmployeeId(int employeeId) {
+		public void setEmployeeId(Long employeeId) {
 			this.employeeId = employeeId;
 		}
 
-		public int getDepartmentId() {
+		public Long getDepartmentId() {
 			return departmentId;
 		}
 
-		public void setDepartmentId(int departmentId) {
+		public void setDepartmentId(Long departmentId) {
 			this.departmentId = departmentId;
 		}
 

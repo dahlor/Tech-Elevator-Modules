@@ -5,20 +5,20 @@ import java.util.Date;
 public class Project {
 	
 	// Declarations.
-	private int projectId;
+	private Long projectId;
 	private String projectName;
 	private Date fromDate;
 	private Date toDate;
 	
 	// Constructors.
 	public Project() {
-		projectId = 0;
+		projectId = null;
 		projectName = "";
 		fromDate = null;
 		toDate = null;
 	}
 	
-	public Project(int projectId, String projectName, Date fromDate, Date toDate) {
+	public Project(Long projectId, String projectName, Date fromDate, Date toDate) {
 		this.projectId = projectId;
 		this.projectName = projectName;
 		this.fromDate = fromDate;
@@ -27,11 +27,11 @@ public class Project {
 	
 	
 	// Setters and getters.
-	public int getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(int projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 

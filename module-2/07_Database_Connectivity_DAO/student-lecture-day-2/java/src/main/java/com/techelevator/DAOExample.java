@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.util.ArrayList;
+
 // This is application program to used DAO to access the database
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -25,10 +27,20 @@ public class DAOExample {
 		smallville.setName("Smallville");  //         using it's setters
 		smallville.setPopulation(42080);
 		// NOTE: we did not a city_id because it comes from the data base manager
+		System.out.println("City id sent to the dao is: " + smallville.getId());
+
 		
 		dao.save(smallville);  // Use the DAO save method to add the new City to the database
 		
-		City theCity = dao.findCityById(smallville.getId());
+		System.out.println("City id coming back from the dao is: " + smallville.getId());
+		
+		City theCity = dao.findCityById(smallville.getId()); // Retrieve the City just added to the database for verification
+		
+		System.out.println("City id saved in the database is: " + theCity.getId());
+		
+		ArrayList<City> listOfCities = (ArrayList<City>) dao.findCityByDistrict("Ohio");
+		
+		
 		
 	}
 
