@@ -40,11 +40,14 @@ public class JDBCProjectDAO implements ProjectDAO {
 	@Override
 	public void removeEmployeeFromProject(Long projectId, Long employeeId) {
 		
+		jdbcTemplate.update("delete from project_employee where employee_id = " + employeeId + " and project_id = " + projectId);		
 	}
 
 	@Override
 	public void addEmployeeToProject(Long projectId, Long employeeId) {
 		
+		jdbcTemplate.update("insert into project_employee (project_id, employee_id) values ("+projectId+", "+employeeId+")");		
+
 	}
 	
 	public Project MapRowToProjects(SqlRowSet theRows) {
@@ -56,5 +59,4 @@ public class JDBCProjectDAO implements ProjectDAO {
 		
 		return oneProject;
 	}
-
 }

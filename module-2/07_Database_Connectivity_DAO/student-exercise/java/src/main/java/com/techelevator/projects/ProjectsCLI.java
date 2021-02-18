@@ -294,14 +294,14 @@ public class ProjectsCLI {
 		Project selectedProject = getProjectSelectionFromUser();
 		
 		System.out.println("Choose an employee to remove:");
-//		List<Employee> projectEmployees = employeeDAO.getEmployeesByProjectId(selectedProject.getId());  // If your getter is not called "getId()", change this to what yours is called
-//		if(projectEmployees.size() > 0) {
-//			Employee selectedEmployee = (Employee)menu.getChoiceFromOptions(projectEmployees.toArray());
-//			projectDAO.removeEmployeeFromProject(selectedProject.getId(), selectedEmployee.getId()); // If your getters are not called "getId()", change this to what yours is called
-//			System.out.println("\n*** "+selectedEmployee+" removed from "+selectedProject+" ***");
-//		} else {
-//			System.out.println("\n*** No results ***");
-//		}
+		List<Employee> projectEmployees = employeeDAO.getEmployeesByProjectId(selectedProject.getProjectId());  // If your getter is not called "getId()", change this to what yours is called
+		if(projectEmployees.size() > 0) {
+			Employee selectedEmployee = (Employee)menu.getChoiceFromOptions(projectEmployees.toArray());
+			projectDAO.removeEmployeeFromProject(selectedProject.getProjectId(), selectedEmployee.getEmployeeId()); // If your getters are not called "getId()", change this to what yours is called
+			System.out.println("\n*** "+selectedEmployee+" removed from "+selectedProject+" ***");
+		} else {
+			System.out.println("\n*** No results ***");
+		}
 	}
 
 	private void handleEmployeeProjectAssignment() {
@@ -313,7 +313,7 @@ public class ProjectsCLI {
 		List<Employee> allEmployees = employeeDAO.getAllEmployees();   // Use the DAO object to run DAO method
 		Employee selectedEmployee = (Employee)menu.getChoiceFromOptions(allEmployees.toArray());
 		
-//		projectDAO.addEmployeeToProject(selectedProject.getId(), selectedEmployee.getId());  // If your getters are not called "getId()", change this to what yours is called
+		projectDAO.addEmployeeToProject(selectedProject.getProjectId(), selectedEmployee.getEmployeeId());  // If your getters are not called "getId()", change this to what yours is called
 		System.out.println("\n*** "+selectedEmployee+" added to "+selectedProject+" ***");
 	}
 	
