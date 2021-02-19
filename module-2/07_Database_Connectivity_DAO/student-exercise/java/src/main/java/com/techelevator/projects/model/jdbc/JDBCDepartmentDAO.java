@@ -26,10 +26,10 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 		
 		String getAllDepartmentsSQL = "select department_id, name from department order by name";
 		
-		SqlRowSet theDepartments = jdbcTemplate.queryForRowSet(getAllDepartmentsSQL); // since there are no placeholders in the SQL, nothing else is coded
+		SqlRowSet theDepartments = jdbcTemplate.queryForRowSet(getAllDepartmentsSQL);
 		
 		while(theDepartments.next()) {
-			Department aDepartment = MapRowToDepartment(theDepartments);	// Note MapRowToDepartment needs to be written
+			Department aDepartment = MapRowToDepartment(theDepartments);
 			listOfDepartments.add(aDepartment);
 			}
 	
@@ -43,10 +43,10 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 		
 		String searchAllDepartmentsSQL = ("select * from department where upper(name) like upper('%" + nameSearch + "%') order by name");
 		
-		SqlRowSet theDepartments = jdbcTemplate.queryForRowSet(searchAllDepartmentsSQL); // since there are no placeholders in the SQL, nothing else is coded
+		SqlRowSet theDepartments = jdbcTemplate.queryForRowSet(searchAllDepartmentsSQL);
 		
 		while(theDepartments.next()) {
-			Department aDepartment = MapRowToDepartment(theDepartments);	// Note MapRowToDepartment needs to be written
+			Department aDepartment = MapRowToDepartment(theDepartments);
 			resultsOfDepartmentSearch.add(aDepartment);
 			}
 	

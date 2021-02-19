@@ -1,7 +1,6 @@
 package com.techelevator.projects.model.jdbc;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -9,7 +8,6 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
-import com.techelevator.projects.model.Department;
 import com.techelevator.projects.model.Employee;
 import com.techelevator.projects.model.EmployeeDAO;
 
@@ -28,10 +26,10 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 		
 		String getAllEmployeesSQL = "select last_name, first_name, employee_id from employee order by last_name";
 		
-		SqlRowSet theEmployees = jdbcTemplate.queryForRowSet(getAllEmployeesSQL); // since there are no placeholders in the SQL, nothing else is coded
+		SqlRowSet theEmployees = jdbcTemplate.queryForRowSet(getAllEmployeesSQL);
 		
 		while(theEmployees.next()) {
-			Employee anEmployee = MapRowToEmployee(theEmployees);	// Note MapRowToDepartment needs to be written
+			Employee anEmployee = MapRowToEmployee(theEmployees);
 			listOfEmployees.add(anEmployee);
 			}
 	
@@ -59,10 +57,10 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 					
 		String searchAllEmployeesSQL = ("select last_name, first_name, employee_id from employee where upper(first_name) like upper('"+firstNameAdapted+"') or upper(last_name) like upper('"+lastNameAdapted+"') order by last_name");
 		
-		SqlRowSet theEmployees = jdbcTemplate.queryForRowSet(searchAllEmployeesSQL); // since there are no placeholders in the SQL, nothing else is coded
+		SqlRowSet theEmployees = jdbcTemplate.queryForRowSet(searchAllEmployeesSQL);
 		
 		while(theEmployees.next()) {
-			Employee anEmployee = MapRowToEmployee(theEmployees);	// Note MapRowToDepartment needs to be written
+			Employee anEmployee = MapRowToEmployee(theEmployees);
 			resultsOfEmployeeSearch.add(anEmployee);
 			}
 	
@@ -76,10 +74,10 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 		
 		String getAllEmployeesSQL = ("select last_name, first_name, employee_id from employee where department_id = " + id + " order by last_name");
 		
-		SqlRowSet theEmployees = jdbcTemplate.queryForRowSet(getAllEmployeesSQL); // since there are no placeholders in the SQL, nothing else is coded
+		SqlRowSet theEmployees = jdbcTemplate.queryForRowSet(getAllEmployeesSQL); 
 		
 		while(theEmployees.next()) {
-			Employee anEmployee = MapRowToEmployee(theEmployees);	// Note MapRowToDepartment needs to be written
+			Employee anEmployee = MapRowToEmployee(theEmployees);
 			listOfEmployees.add(anEmployee);
 			}
 	
@@ -93,10 +91,10 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 		
 		String getAllEmployeesSQL = ("select last_name, first_name, employee_id from employee where not exists (select employee_id from project_employee where employee.employee_id = project_employee.employee_id)");
 		
-		SqlRowSet theEmployees = jdbcTemplate.queryForRowSet(getAllEmployeesSQL); // since there are no placeholders in the SQL, nothing else is coded
+		SqlRowSet theEmployees = jdbcTemplate.queryForRowSet(getAllEmployeesSQL);
 		
 		while(theEmployees.next()) {
-			Employee anEmployee = MapRowToEmployee(theEmployees);	// Note MapRowToDepartment needs to be written
+			Employee anEmployee = MapRowToEmployee(theEmployees);
 			listOfEmployees.add(anEmployee);
 			}
 	
@@ -110,10 +108,10 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 		
 		String getAllEmployeesSQL = ("select last_name, first_name, employee.employee_id from employee inner join project_employee on employee.employee_id = project_employee.employee_id where project_id = " + projectId + " order by last_name, first_name, employee.employee_id");
 		
-		SqlRowSet theEmployees = jdbcTemplate.queryForRowSet(getAllEmployeesSQL); // since there are no placeholders in the SQL, nothing else is coded
+		SqlRowSet theEmployees = jdbcTemplate.queryForRowSet(getAllEmployeesSQL);
 		
 		while(theEmployees.next()) {
-			Employee anEmployee = MapRowToEmployee(theEmployees);	// Note MapRowToDepartment needs to be written
+			Employee anEmployee = MapRowToEmployee(theEmployees);
 			listOfEmployees.add(anEmployee);
 			}
 	

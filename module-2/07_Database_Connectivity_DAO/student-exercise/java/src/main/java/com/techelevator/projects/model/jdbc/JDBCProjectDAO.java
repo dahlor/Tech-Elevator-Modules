@@ -8,7 +8,6 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
-import com.techelevator.projects.model.Department;
 import com.techelevator.projects.model.Project;
 import com.techelevator.projects.model.ProjectDAO;
 
@@ -28,15 +27,16 @@ public class JDBCProjectDAO implements ProjectDAO {
 		// Define SQL SELECT string.
 		String getAllProjectsSQL = ("select project_id, name from project where (from_date <= current_date or from_date isnull) and (to_date >= current_date or to_date isnull) order by name");
 		
-		SqlRowSet theProjects = jdbcTemplate.queryForRowSet(getAllProjectsSQL); // since there are no placeholders in the SQL, nothing else is coded
+		SqlRowSet theProjects = jdbcTemplate.queryForRowSet(getAllProjectsSQL);
 		
 		while(theProjects.next()) {
-			Project aProject = MapRowToProjects(theProjects);	// Note MapRowToDepartment needs to be written
+			Project aProject = MapRowToProjects(theProjects);
 			listOfProjects.add(aProject);
 			}
 	
 		return listOfProjects;
 	}
+	
 	@Override
 	public void removeEmployeeFromProject(Long projectId, Long employeeId) {
 		

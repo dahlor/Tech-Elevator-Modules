@@ -76,14 +76,11 @@ import com.techelevator.projects.model.jdbc.JDBCDepartmentDAO;
  * Now that all the setup stuff is done, we can start writing test for the methods in the JDBC/DAO
  **************************************************************************************************/
 		
-		// Test the createDepartment() method.
-		/**
-		 * Inserts a new department into the data store.
-		 * 
-		 * @param newDepartment the department object to insert
-		 * @return the department object with its new id filled in
-		 * 
-		 */
+		@Test
+		public void testShowingAllDepartments() {
+			
+		}
+		
 		
 		@Test
 		public void testCreateDepartment() {
