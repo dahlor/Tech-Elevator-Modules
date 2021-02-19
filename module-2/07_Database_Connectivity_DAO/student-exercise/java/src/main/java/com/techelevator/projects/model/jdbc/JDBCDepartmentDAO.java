@@ -22,10 +22,8 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 	@Override
 	public List<Department> getAllDepartments() {
 		
-		// Instantiate the list.
 		List<Department> listOfDepartments = new ArrayList<Department>();
 		
-		// Define SQL SELECT string.
 		String getAllDepartmentsSQL = "select department_id, name from department order by name";
 		
 		SqlRowSet theDepartments = jdbcTemplate.queryForRowSet(getAllDepartmentsSQL); // since there are no placeholders in the SQL, nothing else is coded
@@ -41,10 +39,8 @@ public class JDBCDepartmentDAO implements DepartmentDAO {
 	@Override
 	public List<Department> searchDepartmentsByName(String nameSearch) {
 		
-		// Instantiate the list.
 		List<Department> resultsOfDepartmentSearch = new ArrayList<Department>();
 		
-		// Define SQL SELECT string.
 		String searchAllDepartmentsSQL = ("select * from department where upper(name) like upper('%" + nameSearch + "%') order by name");
 		
 		SqlRowSet theDepartments = jdbcTemplate.queryForRowSet(searchAllDepartmentsSQL); // since there are no placeholders in the SQL, nothing else is coded
