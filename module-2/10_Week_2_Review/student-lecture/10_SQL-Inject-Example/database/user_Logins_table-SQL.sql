@@ -25,4 +25,6 @@ values('Vinny','mycousin');
 insert into user_logins
 values('Vito','godfather');
 
+rollback;
+
 commit;

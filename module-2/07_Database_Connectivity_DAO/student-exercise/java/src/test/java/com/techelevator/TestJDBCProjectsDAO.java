@@ -3,7 +3,6 @@ package com.techelevator;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -13,13 +12,15 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
-import com.techelevator.projects.model.Department;
-import com.techelevator.projects.model.jdbc.JDBCDepartmentDAO;
+import com.techelevator.projects.model.Project;
+import com.techelevator.projects.model.jdbc.JDBCProjectDAO;
 
 	@FixMethodOrder(MethodSorters.NAME_ASCENDING) // list the tests in alphabetical order when you run them
-	public class TestJDBCDepartmentDAO {
+	public class TestJDBCProjectsDAO {
 
 /***********************************************************************************
  * Set up for database access
@@ -29,7 +30,7 @@ import com.techelevator.projects.model.jdbc.JDBCDepartmentDAO;
 		private static SingleConnectionDataSource dataSource;
 		
 		// Define a reference to the JDBC/DAO we want to test
-		private JDBCDepartmentDAO deptDao;
+		private JDBCProjectDAO projDao;
 		
 		/* Before any tests are run, this method initializes the datasource for testing */
 		@BeforeClass
@@ -58,7 +59,7 @@ import com.techelevator.projects.model.jdbc.JDBCDepartmentDAO;
 		public void testSetup() {
 			
 			// Instantiate an object containing the methods we want to test and assign it to the reference above
-			deptDao = new JDBCDepartmentDAO(dataSource);
+			projDao = new JDBCProjectDAO(dataSource);
 			
 		}
 		
@@ -74,56 +75,30 @@ import com.techelevator.projects.model.jdbc.JDBCDepartmentDAO;
  * Now that all the setup stuff is done, we can start writing test for the methods in the JDBC/DAO
  **************************************************************************************************/
 		
-		@Test
-		public void testGetAllDepartments() {
-
-			List<Department> results = deptDao.getAllDepartments();
-			// Making sure 
+		@Test 
+		public void getAllActiveProjects() {
+			List<Project> results = projDao.getAllActiveProjects();
 			assertNotNull(results);
-			// Showing that our Department list is not empty.
-			assertEquals(deptDao.getAllDepartments().size(), results.size());
+			assertEquals(projDao.getAllActiveProjects().size(), results.size());
 		}
 		
 		@Test
-		public void testCreateDepartment() {
-			
-			// Arrange - set up data for the test
-			// Create a new department to add to the database
-			Department newDept = new Department(); // Instantiate an empty new department.
-			newDept.setDepartmentName("Jasons Meatballs"); // Use setters to assign value in the new department.
-															// We do not set the value for the primary key
-															//		Because the database manager does it.
-
-			Department returnedDept;						// Hold the department returned from the method.
-
-			// Act - actually run the method
-			returnedDept = deptDao.createDepartment(newDept);	// Call the method to test with the parameters it needs
-			
-			// Assert - verify the method did what it was supposed to
-			
-			// Check to see if a Department object was returned - if it was, the data was probably added to the database.
-			assertNotNull(returnedDept);	//true if the reference is not null - if object was returned, it not null			
-		
-			// Was the new Department stored correctly
-			assertEquals(newDept.getDepartmentName(), returnedDept.getDepartmentName());	// If the department we sent to the database matches the department returned
+		public void removeEmployeeFromProject() {
+			String sqlGetProjectById = "select employee_id from project_employee where project_id = 6";
+			JdbcTemplate theDataBase = new JdbcTemplate(dataSource);
+			SqlRowSet ProjectBy_id = theDataBase.queryForRowSet(sqlGetProjectById);
+			assertNotNull(ProjectBy_id);
+			projDao.removeEmployeeFromProject(6L, 5L);
+			ProjectBy_id = theDataBase.queryForRowSet(sqlGetProjectById);
+			assertNotNull(ProjectBy_id);
 		}
 		
 		@Test
-		public void testSaveDepartment() {
-			Department newDepartment = new Department();
-			newDepartment.setDepartmentName("Ploops");
-			deptDao.saveDepartment(newDepartment);
-			List<Department> results = new ArrayList<Department>();
-			results.add(newDepartment);
-			assertNotNull(results);
-			assertEquals(newDepartment.getDepartmentName(), results.get(0).getDepartmentName());
-		}
-		
-		@Test
-		public void testSearchDepartmentBy() {
-			Department newDepartment = new Department();
-			newDepartment.setDepartmentName("Department of Redundancy Department");
-			List<Department> results = deptDao.searchDepartmentsByName(newDepartment.getDepartmentName());
-			assertEquals(newDepartment.getDepartmentName(), results.get(0).getDepartmentName());
+		public void addEmployeeToProject() {
+			projDao.addEmployeeToProject(5L, 5L);
+			String sqlGetProjectById = "select employee_id from project_employee where project_id = 5";
+			JdbcTemplate theDataBase = new JdbcTemplate(dataSource);
+			SqlRowSet ProjectBy_id = theDataBase.queryForRowSet(sqlGetProjectById);
+			assertNotNull(ProjectBy_id);
 		}
 }
