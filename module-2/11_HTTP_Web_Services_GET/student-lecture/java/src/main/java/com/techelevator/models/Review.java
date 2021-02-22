@@ -57,7 +57,7 @@ public class Review {
                 "\n Review Details" +
                 "\n--------------------------------------------" +
                 "\n Hotel ID: " + hotelID +
-                "\n Title:'" + title +
+                "\n Title: " + title +
                 "\n Review: " + review +
                 "\n Author: " + author +
                 "\n Stars: " + stars;
