@@ -17,31 +17,68 @@ public class HotelService {
   private final RestTemplate restTemplate = new RestTemplate();
   private final ConsoleService console = new ConsoleService();
 
-  public HotelService(String url) {
-    BASE_URL = url;
+  public HotelService(String url) {		// constructor for the HotelService that accepts the baseURL for our server
+    BASE_URL = url;						// assign the url passed to our base url variable
   }
 
   /**
-   * Create a new reservation in the hotel reservation system
+   * Create a new reservation in the hotel reservation system host on our API server
    *
    * @param newReservation
    * @return Reservation
    */
   public Reservation addReservation(String newReservation) {
-    // TODO: Implement method
-    return null;
+    // to add a reservation to the API server, we need a POST HTTP request
+    Reservation aReservation = makeReservation(newReservation);
+    
+    // Now that we have a Reservation object, we need to use API to add it to the API resource
+    // We will use an HTTP Post request to do so
+    // An HTTP POST requires headers and the data to be added in the body of the request
+    
+    // Create the headers for the HTTP POST
+    
+    HttpHeaders theHeaders = new HttpHeaders(); // Define a header object to hold the header information for the request
+    theHeaders.setContentType(MediaType.APPLICATION_JSON); // Set the content attribute of the headers to be APPLICATION_JSON
+    													  // MediaType is a group of valid constants for request data types 	
+    
+    // An HttpEntity object contains a properly formatted request for use in RestTemplate methods
+    // We use HttpEntity objects to format our request so we don't have to know how to do it ourselves
+    // An HttpEntity constructor takes the object containing the data to send as an object with the HttpHeaders object
+    
+    HttpEntity anEntity = new HttpEntity(aReservation, theHeaders);	// Instantiate an HttpEntity object with the
+    																// Reservation object to be added to the API resource
+    																// and the headers
+    
+    // Call the API with a POST request and the HttpEntity we created
+    
+    //							do a POST		 url					 request   this-type-of-date-returned
+    aReservation = restTemplate.postForObject(BASE_URL + "reservations", anEntity, Reservation.class);
+    
+    return aReservation;
   }
 
   /**
    * Updates an existing reservation by replacing the old one with a new
    * reservation
    *
-   * @param CSV
+   * @param CSV		a comma delineated string
    * @return
    */
   public Reservation updateReservation(String CSV) {
-    // TODO: Implement method
-    return null;
+    // To update, we use a PUT HTTP request.
+	  
+	Reservation aReservation =  makeReservation(CSV);
+	
+	// Create the headers
+	HttpHeaders theHeaders = new HttpHeaders();
+	
+	// Set content type in the Headers
+	HttpEntity anEntity = new HttpEntity(aReservation, theHeaders);
+	
+	// Call the API with an HTTP PUT to update the Reservation on the API resource
+	restTemplate.put(BASE_URL + "reservations/" + aReservation.getId(), anEntity); // HTTP PUT does not return anything
+
+    return aReservation;
   }
 
   /**
@@ -54,7 +91,27 @@ public class HotelService {
   }
 
   /* DON'T MODIFY ANY METHODS BELOW */
-
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  /* DON'T MODIFY ANY METHODS BELOW */
+  
+  
+  
   /**
    * List all hotels in the system
    *
