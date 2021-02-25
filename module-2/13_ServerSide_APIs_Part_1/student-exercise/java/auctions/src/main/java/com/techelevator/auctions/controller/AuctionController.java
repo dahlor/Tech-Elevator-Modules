@@ -31,8 +31,14 @@ public class AuctionController {
     	System.out.println("Called with the path /auctions");
     	return dao.create(auction);
     }
+    
+    
+    // handle path "/auctions" for an HTTP GET
+    // handle path "/auctions?title_like=value" for an HTTP GET
+    
     @RequestMapping(path= "/auctions", method=RequestMethod.GET)
-    public List<Auction> list(@RequestParam (defaultValue = "") String title_like, @RequestParam (defaultValue = "0") double currentBid_lte) {
+    public List<Auction> list(@RequestParam (defaultValue = "") String title_like, 
+    						  @RequestParam (defaultValue = "0") double currentBid_lte) {
     	if (!title_like.equals("") && (currentBid_lte >0)) {
     		return dao.searchByTitleAndPrice(title_like, currentBid_lte);
     	}

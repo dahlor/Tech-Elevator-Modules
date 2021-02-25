@@ -16,12 +16,19 @@ import java.util.List;
 @RestController
 public class HotelController {
 
-    private HotelDAO hotelDAO;
-    private ReservationDAO reservationDAO;
+    private HotelDAO hotelDAO;					// Reference to the HotelDAO so we can use its methods
+    private ReservationDAO reservationDAO;		// Reference to the HotelDAO so we can use its methods
 
+    // Send to the constructor of this class a HotelDAO and a Reservations DAO
+    // Spring MVC dependency injection automatically instantiates a HotelDAO object
+    //							and ReservationDAO object and passes them to the ctor
+    //
+    // We do not instantiate the DAO object used by the controller, Spring MVC does it
+    //
+    // You must include the @Component annotation in the DAOs for Spring MVC to dependency inject them
     public HotelController(HotelDAO hotelDAO, ReservationDAO reservationDAO) {
-        this.hotelDAO = hotelDAO;
-        this.reservationDAO = reservationDAO;
+        this.hotelDAO = hotelDAO;				// Assign the reference for the HotelDAO the DAO passed
+        this.reservationDAO = reservationDAO;	// Assign the reference for the ReservationDAO the DAO passed
     }
 
     /**
@@ -85,7 +92,7 @@ public class HotelController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
-    public Reservation addReservation(@RequestBody Reservation reservation, @PathVariable("id") int hotelID)
+    public Reservation addReservation(@Valid @RequestBody Reservation reservation, @PathVariable("id") int hotelID)
             throws HotelNotFoundException {
         return reservationDAO.create(reservation, hotelID);
     }

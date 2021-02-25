@@ -6,12 +6,27 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class Reservation {
+	
+	// We can use validation annotations to verify data is what expect
+	//		aka Bean Validation
 
+	@Min (value=0)				// Make sure the minimum value in id is 1
     private int id;
+
+	@Min (value=1)				// Make sure the minimum value of hotelID is at least 1
     private int hotelID;
+	
+	@NotBlank
     private String fullName;
+    
+    @NotNull
     private String checkinDate;
+    
+    @NotNull
     private String checkoutDate;
+    
+    @Min (value=1, message="Must have at least one guest for reservations.")
+    @Max (value=4, message="Sorry, no more than four guests per room.")
     private int guests;
 
     public Reservation() {
