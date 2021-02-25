@@ -84,7 +84,6 @@ public class AuctionService {
 	    	console.printError(exceptionObject.getMessage());
 	    	return null;
 	    }
-        
         return anAuction;
     }
 
@@ -112,10 +111,11 @@ public class AuctionService {
       }
 
     public boolean delete(int id) {
+    	
     	try {
     	restTemplate.delete(API_URL + "/" + id);
-    	}	                                                                              // it knows you already have the object
-	    catch (RestClientResponseException exceptionObject) {  // if there is a response error display status code and message
+    	}
+    	catch (RestClientResponseException exceptionObject) {  // if there is a response error display status code and message
 	    	console.printError(exceptionObject.getRawStatusCode() + exceptionObject.getStatusText());
 	    	return false;
 	    }
