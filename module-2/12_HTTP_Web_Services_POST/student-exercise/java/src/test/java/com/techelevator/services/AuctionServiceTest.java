@@ -118,7 +118,7 @@ public class AuctionServiceTest {
                 .thenThrow(ResourceAccessException.class);
         auctionService.restTemplate = mockRestTemplate;
 
-        // Act
+        // Act 
         Auction actualAuction = auctionService.add(testAddString);
 
         // Assert

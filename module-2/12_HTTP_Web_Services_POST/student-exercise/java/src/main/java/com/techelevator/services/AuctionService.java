@@ -72,8 +72,18 @@ public class AuctionService {
         theHeaders.setContentType(MediaType.APPLICATION_JSON);
         													         
         HttpEntity anEntity = new HttpEntity(anAuction, theHeaders);	
-        																
+        
+        try {
         anAuction = restTemplate.postForObject(API_URL, anEntity, Auction.class);
+        }	                                                                              // it knows you already have the object
+	    catch (RestClientResponseException exceptionObject) {  // if there is a response error display status code and message
+	    	console.printError(exceptionObject.getRawStatusCode() + exceptionObject.getStatusText());
+	    	return null;
+	    }
+	    catch (ResourceAccessException exceptionObject) {      // if there is an error with the API trying to access the data resource
+	    	console.printError(exceptionObject.getMessage());
+	    	return null;
+	    }
         
         return anAuction;
     }
@@ -86,13 +96,33 @@ public class AuctionService {
     	HttpEntity anEntity = new HttpEntity(anAuction, theHeaders);
     	theHeaders.setContentType(MediaType.APPLICATION_JSON);
     	
+    	try {
     	restTemplate.put(API_URL + "/" + anAuction.getId(), anEntity); // HTTP PUT does not return anything
-
+    	}	                                                                              // it knows you already have the object
+	    catch (RestClientResponseException exceptionObject) {  // if there is a response error display status code and message
+		    	console.printError(exceptionObject.getRawStatusCode() + exceptionObject.getStatusText());
+		    	return null;
+	    }
+	    catch (ResourceAccessException exceptionObject) {      // if there is an error with the API trying to access the data resource
+	    		console.printError(exceptionObject.getMessage());
+	    		return null;
+	    }
+    	
         return anAuction;
       }
 
     public boolean delete(int id) {
+    	try {
     	restTemplate.delete(API_URL + "/" + id);
+    	}	                                                                              // it knows you already have the object
+	    catch (RestClientResponseException exceptionObject) {  // if there is a response error display status code and message
+	    	console.printError(exceptionObject.getRawStatusCode() + exceptionObject.getStatusText());
+	    	return false;
+	    }
+	    catch (ResourceAccessException exceptionObject) {      // if there is an error with the API trying to access the data resource
+	    	console.printError(exceptionObject.getMessage());
+	    	return false;
+	    }
     	return true;
     }
 
