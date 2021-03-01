@@ -17,7 +17,11 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+// This will handle all API calls for the /hotels path
+
 @RestController
+@PreAuthorize("isAuthenticated()") // Ask Spring to verify whomever wants to use any of the methods
+								   // in this controller is authorized to do so - done a successful login
 public class HotelController {
 
     private HotelDAO hotelDAO;
@@ -33,6 +37,7 @@ public class HotelController {
      *
      * @return a list of all hotels in the system
      */
+    @PreAuthorize("permitAll()") // allow anyone regardless of their login status to access this method
     @RequestMapping(path = "/hotels", method = RequestMethod.GET)
     public List<Hotel> list() {
         return hotelDAO.list();

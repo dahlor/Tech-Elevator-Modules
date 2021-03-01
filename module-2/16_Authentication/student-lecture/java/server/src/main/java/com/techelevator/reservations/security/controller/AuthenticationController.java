@@ -32,7 +32,10 @@ public class AuthenticationController {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
 
+    
+    // @PostMapping is alternative to @RequestMapping(path="/login", method=RequestMethod.POST)
     @PostMapping("/login")
+    // This method will handle login of user and will return a JWT in the HTTP response if login is successful
     public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDto loginDto) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
