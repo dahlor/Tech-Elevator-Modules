@@ -1,6 +1,7 @@
 package com.techelevator.post;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
@@ -21,14 +22,23 @@ public class UserJdbcDao implements UserDao {
 
 	@Override
 	public void save(User newUser) {
-		// Implement this method to save user to database
+		
+		String sqlSaveUser = "insert into users (first_name, last_name, email, role, created) values (?, ?, ?, ?, ?)";
+		
+		jdbcTemplate.update(sqlSaveUser, newUser.getFirstName(), newUser.getLastName(), newUser.getEmail(), newUser.getRole(), Date.valueOf(newUser.getCreated()));
 	}
 
 	@Override
 	public List<User> getAllUsers() {
-		// Implement this method to pull in all users from database
+		List<User> allUsers = new ArrayList<>();
+		String sqlGetAllUsers = "SELECT id, first_name, last_name, email, role, created FROM users";
 
-		return null;
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlGetAllUsers);
+		while (results.next()) {
+			User userResult = mapRowToUser(results);
+			allUsers.add(userResult);
+		}
+		return allUsers;
 	}
 
 	private User mapRowToUser(SqlRowSet results) {
@@ -41,5 +51,4 @@ public class UserJdbcDao implements UserDao {
 		userRow.setCreated(results.getDate("created").toLocalDate());
 		return userRow;
 	}
-
 }

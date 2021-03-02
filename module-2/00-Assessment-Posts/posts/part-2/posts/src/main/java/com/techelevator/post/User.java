@@ -59,7 +59,7 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.role = role;
-		this.created = created;
+		this.created = (LocalDate)created;
 	}
 
 	public String getEmail() {
