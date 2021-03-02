@@ -220,6 +220,35 @@ public class Lecture {
 		for(int i=0; i < newWordsInTitle.length; i++) {
 			System.out.println("Word #" + (i+1) + " is " + newWordsInTitle[i].trim()); // .trim() will remove unnecessary spaces.
 		}
-
+	
+	
+		// Make a String array of numbers from one to three.
+		String[] numbersFromOneToThree = {"1", "2", "3", "4", "5"};
+			
+		// The For Loop
+		for (int i = 0; i < 2; i++) {
+			System.out.println(numbersFromOneToThree[i]);
+		}
+		
+		
+		// The For-Each Loop
+		//				come up with a name  : the array to loop through
+		for (String nameThisLiterallyWhatever: numbersFromOneToThree) {
+			System.out.println(nameThisLiterallyWhatever);
+			   }
+			 }	
 	}
-}
+
+//	public String[] repeatingText(String inputText, int numberOfTimes) {
+		
+//		String theAnswerString = "";
+		
+		
+		
+	
+//		return theAnswerString;
+	
+	
+	
+
+
