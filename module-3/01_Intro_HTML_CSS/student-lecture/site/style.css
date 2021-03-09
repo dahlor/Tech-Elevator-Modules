@@ -1,0 +1,15 @@
+/* Comment starts with a slash-asterisk and ends with an asterisk-slash.
+*/
+
+body {
+    font-family: Arial, Helvetica, sans-serif /* Give the browser our font preferences in order of preference. */
+}
+
+img { /* style all the img tags to be smaller */
+    height: 200px;
+}
+
+h1 {
+    font-size: 32px;
+    color: cornflowerblue;
+}
