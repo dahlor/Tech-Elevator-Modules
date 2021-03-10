@@ -1,0 +1,47 @@
+.container {
+    display: grid;
+
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: 
+        "header header header"
+        "menu-nav main upcoming-events"
+        "footer footer footer";
+    grid-gap: 10px;
+
+    height: 100vh;
+}
+
+header {
+    grid-area: header;
+}
+
+nav#menu-nav {
+    grid-area: menu-nav;
+}
+
+main {
+    grid-area: main;
+}
+
+aside {
+    grid-area: upcoming-events;
+}
+
+footer {
+    grid-area: footer;
+}
+
+/* Add responsive design to the page. */
+@media screen and (max-width: 768px) {  /* Apply this styling to screens with max-width of 768px. */
+    .container { /* Restyle any elements with class="container" */
+        grid-template-areas:  /* Redefine the grid areas on the screen to display horizontally*/
+            "header"
+            "menu-nav"
+            "main"
+            "upcoming-events"
+            "footer"
+            ;
+            grid-template-columns: 1fr; /* define a one column grid */
+            ;
+    }
+}
