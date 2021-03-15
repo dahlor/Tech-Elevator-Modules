@@ -80,3 +80,71 @@ main img {
    width: 35%;
 }
 
+body {
+   background-color: var(--secondary-color);
+}
+
+/* Define the grid container for 6 columns where the middle 4 are twice the width as the first & last */
+body {
+   display: grid;
+   grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr;
+   grid-template-areas:
+      ". header nav nav nav ."
+      ". main main main main ."
+      ". order-now order-now store store . "
+      ;
+}
+
+/* Assign elements to the grid area rows and columns */
+
+header {
+   grid-area: header;
+}
+
+nav {
+   grid-area: nav;
+}
+
+main {
+   grid-area: main;
+}
+
+#order-now {
+   grid-area: order-now;
+}
+
+#store {
+   grid-area: store;
+}
+
+nav ul {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: flex-end;
+}
+
+nav ul li {
+   list-style: none;
+   width: calc(100% / 5);
+
+   background-color: var(--primary-color);
+   line-height: 50px;
+   border-radius: 5px;
+   text-align: center;
+}
+
+nav li a {
+   text-transform: uppercase;
+   font-weight: bold;
+}
+
+nav {
+   align-self: end;
+}
+
+main {
+   display: flex;
+   flex-direction: row;
+   background-color: var(--tertiary-color);
+}
