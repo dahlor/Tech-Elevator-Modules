@@ -10,8 +10,27 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const DAYS_PER_WEEK =  7;
+  console.log(`There are ${DAYS_PER_WEEK} days in a week.`);
   // Declares a variable those value can be changed
+
+  let daysPerMonth = 31;
+
+  console.log(`There are ${daysPerMonth} days per month.`);
+
   // Declares a variable that will always be an array
+
+  const WEEKDAYS = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+  ]
+
+  console.table(WEEKDAYS);  
 }
 
 /**
@@ -27,8 +46,12 @@ function printParameters(param1, param2) {
 
 /**
  * Compares two values x and y.
- * == is loose equality
- * === is strict equality
+ * == is loose equality - ignores type only looks at value
+ * === is strict equality - requires both the type and value to be the same
+ * 
+ * 1 == '1'  - true - values represent the value, 1
+ * 1 === '1' - false - types don't match (Number and String)
+ * 
  * @param {Object} x
  * @param {Object} y
  */
@@ -70,14 +93,29 @@ function objects() {
       "Milton Waddams",
       "Samir Nagheenanajar",
       "Michael Bolton"
-    ]
+    ],
+    // define a toString() function for the object
+    meatball : function() {
+      return `${this.lastName}, ${this.firstName}, ${this.age}` //this. references the current object
+    }
+  
   };
 
   // Log the object
 
+  console.log(person);
+  console.table(person);
+
   // Log the first and last name
+  console.log(`Person's name: ${person.firstName} ${person.lastName}`)
 
   // Log each employee
+  for (let i=0; i < person.employees.length; i++) {
+    console.log(`Employee #${i+1}: ${person.employees[i]}`)
+  }
+
+  console.log(person.meatball());
+
 }
 
 /*
@@ -138,4 +176,43 @@ function stringFunctions(value) {
         - trim()
         - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
     */
+}
+
+
+function arrayFunctions() {
+    let stooges = [
+      "Moe",
+      "Larry",
+      "Curly"
+    ]
+    console.table(stooges)
+
+    stooges.push("Shemp");
+    console.table(stooges);
+
+    stooges.unshift("Curly Joe");
+    console.table(stooges);
+
+    stooges.splice(3,0,"Groucho","Chico","Harpo");
+    console.table(stooges);
+
+    stooges.splice(3,1);
+    console.table(stooges);
+
+    stooges.splice(3,2);
+    console.table(stooges);
+
+    stooges.shift();
+    console.table(stooges);
+
+    stooges.pop()
+    console.table(stooges)
+
+    stooges.splice(stooges.indexOf("Larry",1))
+    console.table(stooges)
+
+    let marxBros = ["Groucho", "Chico", "Harpo"]
+
+    let oldFunnyGuys = stooges.concat(marxBros);
+    console.table(oldFunnyGuys)
 }
