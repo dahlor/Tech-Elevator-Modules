@@ -28,6 +28,11 @@ function printToConsole(value) {
  * @param {number} secondParameter the second parameter to multiply
  */
 
+function multiplyTogether(num1, num2){
+  let result = num1 * num2;
+  return result;
+}
+
 /**
  * This version makes sure that no parameters are ever missing. If
  * someone calls this function without parameters, we default the
@@ -39,6 +44,16 @@ function printToConsole(value) {
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
 
+function multiplyNoUndefined(num1, num2){
+  if (num1 == null || num1 == NaN){
+    let num1 = 0;
+  }
+  if (num2 == null || num2 == NaN){
+    let num2 = 0;
+  }
+  let result = num1 * num2;
+  return result;
+}
 
  
 /**
@@ -100,7 +115,9 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+  return numbersToSum.reduce((sum, aNumber)=> {
+                                                return sum += aNumber;
+                                              });
 }
 
 /**
@@ -111,7 +128,16 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+function allDivisibleByThree(numbersToFilter) {
+
+    function isDivByThree(num) {
+      if (num % 3 === 0){
+      return num;
+    }
+  }	
+    const divByThree = numbersToFilter.filter(isDivByThree);	
+  return divByThree;
+}
 
 
 /**
@@ -121,7 +147,7 @@ function allDivisibleByThree(numbersToFilter) {}
  * The map function will return an array created from the elements passed to it
  * 
  * @param - None
- * @returns {arrray created from values passed to it}
+ * @returns {array created from values passed to it}
  */
 
 function mapArrayFunctionExampleFromBook() {

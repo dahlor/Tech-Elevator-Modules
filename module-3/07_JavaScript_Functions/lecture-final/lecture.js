@@ -136,7 +136,7 @@ function sumAllNumbers(numbersToSum) {
                                                                         //     to the current sum
                                                } );
 
-// alternate solution: return numbersToSum.reduce((sum, aNumber) => {sum += aNumber})
+// alternate solution:  
 
 // alternate solution: return numbersToSum.reduce(
 //                                                (sum, aNumber) => {sum += aNumber}
