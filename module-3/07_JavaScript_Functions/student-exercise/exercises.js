@@ -116,10 +116,24 @@ function getFullAddressesOfProperties(objects){
  * It must work for strings and numbers.
  */
 
+// THIS IS A MUCH EASIER WAY TO DO THIS, FRANK...
+
 function findLargest(array){
-        array.sort();
-        return array[array.length - 1];
+       array.sort();
+       return array[array.length - 1];
     }
+
+/* ... BUT HERE'S THE HARD WAY IF YOU REALLY WANT IT:
+
+function findLargest(array){
+    let largest = "";
+    array.forEach(element => {
+        if (element > largest)
+        largest = element
+    })
+    return largest;
+    }
+*/
 
 /*
  * CHALLENGE
