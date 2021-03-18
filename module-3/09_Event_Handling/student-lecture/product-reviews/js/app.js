@@ -47,6 +47,7 @@ function displayReviews() {
 function displayReview(review) {
   const main = document.getElementById('main');
   const tmpl = document.getElementById('review-template').content.cloneNode(true);
+
   tmpl.querySelector('h4').innerText = review.reviewer;
   tmpl.querySelector('h3').innerText = review.title;
   tmpl.querySelector('p').innerText = review.review;
@@ -60,16 +61,33 @@ function displayReview(review) {
 
 // LECTURE STARTS HERE ---------------------------------------------------------------
 
-// set the product reviews page title
-setPageTitle();
-// set the product reviews page description
-setPageDescription();
-// display all of the product reviews on our page
-displayReviews();
+document.addEventListener('DOMContentLoaded', () => {
+                                                    setPageTitle();
+                                                    setPageDescription();
+                                                    displayReviews();
+                                      
+})
+
+  const theDescription = document.querySelector('.description)')
+  theDescription.addEventListener('click', (event) => {
+
+    toggleDescriptionEdit(event.target)
+
+    const theTextBox = document.getElementById('inputDesc')
+    theTextBox.addEventListener('keyup',(event)=> {
+                                                  if (event.key === 'Enter'){
+                                                                            exitDescriptionEdit(event.target, true)
+                                                                            }
+      })
+
+  })
 
 /**
  * Take an event on the description and swap out the description for a text box.
- *
+ * 
+ * 
+ *     
+*
  * @param {Event} event the event object
  */
 function toggleDescriptionEdit(desc) {
