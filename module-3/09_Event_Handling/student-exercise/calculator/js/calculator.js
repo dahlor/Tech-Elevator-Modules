@@ -43,7 +43,7 @@ function parseNumber(num) {
  * so that an operation can be performed.
  */
 function clickOperator(event) {
-  operator = event.target.value;
+  operator = event.value;
   previous = display.value;
   operatorClicked = true;
 }
@@ -53,7 +53,7 @@ function clickOperator(event) {
  * @param {Event} event 
  */
 function clickNumber(event) {
-  const val = event.target.value;
+  const val = event.value;
 
   if( operatorClicked ) {
     display.value = val;
@@ -71,29 +71,86 @@ function clear() {
   display.value = 0;
 }
 
+
 // add event listener for when the DOM is loaded
-document.addEventListener('LOADED_EVENT_GOES_HERE', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
   // set the variable called display equal to the display element
   // HINT: use its id #display to get a reference to it
+  display = document.getElementById('display');
 
   // get a reference to all of the numbers
+
+  const allNumbers = document.getElementsByClassName('number');
+
   // loop over each of the numbers
+
+  Array.from(allNumbers).forEach((loopy) => {
+
   // add a click event listener to each number to call the function clickNumber
 
+  loopy.addEventListener('click', () =>
+        {
+        clickNumber(loopy);
+        }
+  )})
+
   // get a reference to the decimal point button
+
+  const theDecimal = document.getElementsByClassName('decimal');
+
   // add a click event listener to call the function clickNumber
   // the decimal point is part of the number so append it
 
+  Array.from(theDecimal).forEach((loopy) => {
+
+    loopy.addEventListener('click', () =>
+    {
+    clickNumber(loopy);
+    }
+  )})
+
   // get a reference to the all clear button
+
+  const allClear = document.getElementsByClassName('all-clear');
+
   // add a click event listener to call the function clear  
 
+  Array.from(allClear).forEach((loopy) => {
+
+  loopy.addEventListener('click', () =>
+        {
+      clear();
+        }
+  )})
+
   // get a reference to all of the operators;
+
+  const helloOperator = document.getElementsByClassName('operator');
+
   // loop over each of the operators
+
+  Array.from(helloOperator).forEach((loopy) => {
+
   // add a click event listener to each operator to call the function clickOperator
 
+  loopy.addEventListener('click', () =>
+  {
+  clickOperator(loopy);
+  }
+  )})
+
   // add click event listener for the equal sign
+
+  const theAnswer = document.getElementsByClassName('equal-sign');
+
   // should call the function performOperation
 
-});
+  Array.from(theAnswer).forEach((loopy) => {
 
+    loopy.addEventListener('click', () =>
+          {
+        performOperation();
+          }
+  )})
+});
