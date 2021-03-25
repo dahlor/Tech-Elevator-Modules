@@ -2,6 +2,24 @@
     <div class='main'>  <!-- Place our code in the main part of this page -->
        <h2>Product Reviews for {{ title }}</h2> <!-- Use a mustache {{variable}} to indicate you want data from the component placed here -->
        <p class='description'>{{words}}</p> <!-- mustache expression - {{variable}} -->
+         <div class='review'
+         v-for="aReview in reviews" v-bind:key="aReview.id"
+         >
+         <h4>{{aReview.reviewer}}</h4>
+         <div>
+         <img
+             src="../assets/star.png"
+             class="ratingStar"
+             v-for="n in aReview.rating" v-bind:key="n"
+         >
+         </div>
+         <h3>{{aReview.title}}</h3>
+         <p>{{aReview.review}}</p>
+         <p>
+           Favorite? 
+           <input type="checkbox" v-model="aReview.favorited"> <!-- add a checkbox for Favorite -->  
+        </p>
+       </div>
     </div>
 </template>
 
@@ -52,7 +70,19 @@ export default {  // Expose data from this code to external processes (like Vue)
               }
             ]
         }   // end of return
-    }   // end of data()
+    },   // end of data()
+  computed: {
+
+    numberOfOneStarReviews(
+      return this.reviews.reduce((currentCount, anElement) = > {
+        if(anElement.rating === 1) {
+          currentCount++
+        }
+        return currentCount
+      }, 0)
+
+  }
+  }
 }  // end of export
 </script>
 
