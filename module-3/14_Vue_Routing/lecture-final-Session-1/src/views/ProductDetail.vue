@@ -2,6 +2,11 @@
     <div id='app' class='main'> 
         <h1> {{product.name}}</h1>
         <p class='description'>{{product.description}}</p>
+        <!-- Add a link back to the "home page" (path="/") -->
+        <!-- <router-link> allows us to set up a link to a path defined to the vue router -->
+        <!-- router paths are defined in the index.js of the router folder -->
+        <router-link v-bind:to="{name: 'products'}">Back to Products</router-link>
+
         <div class='well-display'> <!-- display teh summary of ratings -->
             <average-summary />
             <star-summary rating="1" />
