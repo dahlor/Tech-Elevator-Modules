@@ -12,10 +12,21 @@ const routes = [
     component: Home
   },
   {
+    path: '/topics',
+    name: 'Topics',
+    component: Home
+  },
+  {
     path: '/:id',
     name: 'Messages',
     component: Messages
-  }
+  },
+  {
+    path: 'topics/:id',
+    name: 'TopicDetails',
+    component: TopicDetails
+  },
+
 ];
 
 const router = new VueRouter({
